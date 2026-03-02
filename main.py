@@ -1,6 +1,6 @@
 import pandas as pd
-from Lectura.API.Api import get_df_unificado
-from Lectura.ArchivoPlano.APlano import load_to_dataframe
+from Lectura.Api import get_df_unificado
+from Lectura.APlano import load_to_dataframe
 from Procesamiento.Separacion import Separacion
 from Procesamiento.AtributosSelect import ejecutar_interactivo
 from Procesamiento.ObtenerColumnas import obtener_columnas_df
@@ -9,7 +9,7 @@ from datetime import date
 from dateutil.relativedelta import relativedelta   # viene con python‑dateutil
 
 hoy = date.today()
-tres_meses_atras = hoy - relativedelta(months=2)
+tres_meses_atras = hoy - relativedelta(months=1)
 
 Seleccion = input('¿Trabajara con DataSets o con Archivos Planos? (D/A): ').lower()
 
@@ -26,7 +26,7 @@ if Seleccion == "d":
     print ("Fecha de inicio:", FechaInicio)
     FechaFin = input("Ingrese la fecha de fin (YYYY-MM-DD): ")
     if not FechaFin:
-        FechaFin    = hoy.isoformat()
+        FechaFin = hoy.isoformat()
 
     print ("Fecha de fin:", FechaFin)
 
