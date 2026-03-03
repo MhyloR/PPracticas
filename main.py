@@ -9,12 +9,11 @@ from datetime import date
 from dateutil.relativedelta import relativedelta   # viene con python‑dateutil
 
 hoy = date.today()
-tres_meses_atras = hoy - relativedelta(months=1)
+tres_meses_atras = hoy - relativedelta(months=3)
 
 Seleccion = input('¿Trabajara con DataSets o con Archivos Planos? (D/A): ').lower()
 
 if Seleccion == "d":
-    print("cebolla")
     ## Solicitud de set##
     input_set = input("Ingrese el dataset ID a tratar: ")
     print("Porfavor, ingrese el rango de fechas a tratar, si no se ingresa nada, se tomara el ultimos tres meses de datos disponibles")
