@@ -1,188 +1,150 @@
 # -*- coding: utf-8 -*-
-"""
-Graficador de series temporales con múltiples vistas
-- Primera columna: fechas/tiempos
-- Segunda columna: valores numéricos
-Crea: línea, barras, área, dispersión, boxplot por mes y heatmap temporal.
-"""
-
-import os
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+from typing import List, Optional, Union
 
-# =========================
-# Parámetros de entrada
-# =========================
-# Opción A: leer desde CSV (descomenta y pone tu ruta)
-CSV_PATH = None  # p.ej.: r"datos/serie.csv"
-
-# Opción B: si ya tienes un DataFrame en memoria llamado `df`,
-# deja CSV_PATH=None y el script usará `df` directamente.
-# Se espera que df tenga dos columnas: [fecha, valor]
-
-# =========================
-# Funciones utilitarias
-# =========================
-
-def cargar_datos(csv_path=None, df=None):
+def preparar_largo_desde_lista(
+    dfs: List[pd.DataFrame],
+    x_col: str = "fecha",
+    y_cols: Optional[List[str]] = None,   # si None: intenta ['valor'] o detecta numéricas
+    label_col: Optional[str] = None,      # si None: se creará un label por DF (DF1, DF2,...)
+    max_series: int = 5
+) -> pd.DataFrame:
     """
-    Carga datos ya sea desde CSV o usa un DataFrame dado.
-    Asume: 1ra columna = fecha/tiempo, 2da columna = valor.
+    Convierte una lista de DataFrames a un DF "largo" con columnas: [fecha, valor, serie].
+    - Si y_cols tiene varias columnas, cada una se vuelve una serie separada por DF.
+    - Si label_col existe, se usa como nombre de serie; si no, se crea TIPO DF{i}/col.
+    - Limita a `max_series` series (para evitar saturación visual).
     """
-    if csv_path is not None:
-        if not os.path.exists(csv_path):
-            raise FileNotFoundError(f"No se encontró el archivo: {csv_path}")
-        tmp = pd.read_csv(csv_path)
-    else:
-        if df is None:
-            raise ValueError("Proporciona CSV_PATH o un DataFrame `df` con dos columnas.")
+    largos = []
+    serie_count = 0
+
+    for i, df in enumerate(dfs, start=1):
+        if df is None or df.empty:
+            continue
         tmp = df.copy()
 
-    if tmp.shape[1] < 2:
-        raise ValueError("Se requieren al menos 2 columnas: tiempo y valor.")
+        # Asegurar x_col como datetime si existe
+        if x_col in tmp.columns:
+            tmp[x_col] = pd.to_datetime(tmp[x_col], errors="coerce")
+            tmp = tmp.dropna(subset=[x_col]).sort_values(x_col)
+        else:
+            # Si no hay x_col, usamos un índice numérico convertido a fechas relativas
+            # (no ideal para calendario, pero permite graficar).
+            tmp = tmp.reset_index(drop=True)
+            tmp[x_col] = pd.to_datetime(np.arange(len(tmp)), unit="D", origin="2025-01-01")
 
-    # Renombrar de forma estándar
-    tmp = tmp.iloc[:, :2].copy()
-    tmp.columns = ["fecha", "valor"]
+        # Determinar columnas de valor
+        if y_cols is None:
+            if "valor" in tmp.columns:
+                cols_val = ["valor"]
+            else:
+                cols_val = [c for c in tmp.columns if c != x_col and pd.api.types.is_numeric_dtype(tmp[c])]
+        else:
+            cols_val = [c for c in y_cols if c in tmp.columns and c != x_col]
 
-    # Parse de fechas
-    tmp["fecha"] = pd.to_datetime(tmp["fecha"], errors="coerce")
-    # Limpiar filas con fecha no válida
-    tmp = tmp.dropna(subset=["fecha"])
-    # Convertir valor a numérico
-    tmp["valor"] = pd.to_numeric(tmp["valor"], errors="coerce")
-    tmp = tmp.dropna(subset=["valor"])
+        if not cols_val:
+            continue
 
-    # Ordenar por tiempo
-    tmp = tmp.sort_values("fecha").reset_index(drop=True)
+        # Armar "largo": (fecha, valor, serie)
+        if label_col and (label_col in tmp.columns):
+            # Una serie por unique(label) por cada columna en cols_val
+            for col in cols_val:
+                sub = tmp[[x_col, col, label_col]].dropna()
+                if sub.empty: 
+                    continue
+                sub = sub.rename(columns={x_col: "fecha", col: "valor", label_col: "serie"})
+                # 1 serie por valor único en 'serie'
+                for s in sub["serie"].unique():
+                    parte = sub[sub["serie"] == s][["fecha", "valor"]].copy()
+                    parte["serie"] = str(s)
+                    largos.append(parte)
+                    serie_count += 1
+                    if serie_count >= max_series:
+                        break
+                if serie_count >= max_series:
+                    break
+        else:
+            # Sin label: crea una serie por cada col de valor y por cada DF
+            for col in cols_val:
+                sub = tmp[[x_col, col]].dropna()
+                if sub.empty:
+                    continue
+                parte = sub.rename(columns={x_col: "fecha", col: "valor"})
+                parte["serie"] = f"DF{i}/{col}"
+                largos.append(parte[["fecha", "valor", "serie"]])
+                serie_count += 1
+                if serie_count >= max_series:
+                    break
 
-    return tmp
+        if serie_count >= max_series:
+            break
 
+    if not largos:
+        raise ValueError("No se encontraron series válidas para graficar.")
 
-def hay_componente_hora(series_fechas: pd.Series) -> bool:
-    """
-    Retorna True si hay componente horario (no todos los tiempos están a medianoche).
-    """
-    # Si la parte de hora/min/seg no es todo cero, asumimos que hay componente horario
-    return not ((series_fechas.dt.hour == 0) &
-                (series_fechas.dt.minute == 0) &
-                (series_fechas.dt.second == 0)).all()
-
-
-def preparar_dimensiones_temporales(df: pd.DataFrame):
-    """
-    Agrega columnas auxiliares de tiempo: año, mes, día de semana, hora.
-    """
-    out = df.copy()
-    out["anio"] = out["fecha"].dt.year
-    out["mes"] = out["fecha"].dt.month
-    out["mes_nombre"] = out["fecha"].dt.month_name(locale="es_ES").str.capitalize() \
-                        if hasattr(out["fecha"].dt, "month_name") else out["mes"].astype(str)
-    out["dow"] = out["fecha"].dt.dayofweek  # 0=Lunes
-    out["dow_nombre"] = out["fecha"].dt.day_name(locale="es_ES").str.capitalize() \
-                        if hasattr(out["fecha"].dt, "day_name") else out["dow"].astype(str)
-    out["hora"] = out["fecha"].dt.hour
-    return out
-
-
-def plot_todos(df: pd.DataFrame, titulo_base: str = "Serie temporal"):
-    """
-    Genera todas las gráficas: línea, barras, área, dispersión,
-    boxplot por mes, heatmap temporal (dow×hora o año×mes).
-    """
-    # Configuración general
-    sns.set(style="whitegrid")
-    plt.rcParams["axes.titlesize"] = 12
-    plt.rcParams["axes.labelsize"] = 10
-
-    # -------- 1) LÍNEA --------
-    fig, ax = plt.subplots(figsize=(10, 4))
-    ax.plot(df["fecha"], df["valor"], color="#1f77b4", linewidth=1.8)
-    ax.set_title(f"{titulo_base} - Línea")
-    ax.set_xlabel("Tiempo")
-    ax.set_ylabel("Valor")
-    fig.autofmt_xdate()
-    plt.tight_layout()
-
-    # -------- 2) BARRAS --------
-    # Útil cuando la frecuencia es discreta (mes, día, etc.)
-    fig, ax = plt.subplots(figsize=(10, 4))
-    ax.bar(df["fecha"], df["valor"], color="#2ca02c", width=0.8)
-    ax.set_title(f"{titulo_base} - Barras")
-    ax.set_xlabel("Tiempo")
-    ax.set_ylabel("Valor")
-    fig.autofmt_xdate()
-    plt.tight_layout()
-
-    # -------- 3) ÁREA --------
-    fig, ax = plt.subplots(figsize=(10, 4))
-    ax.fill_between(df["fecha"], df["valor"], step="pre", alpha=0.3, color="#ff7f0e")
-    ax.plot(df["fecha"], df["valor"], color="#ff7f0e", linewidth=1.5)
-    ax.set_title(f"{titulo_base} - Área")
-    ax.set_xlabel("Tiempo")
-    ax.set_ylabel("Valor")
-    fig.autofmt_xdate()
-    plt.tight_layout()
-
-    # -------- 4) DISPERSIÓN --------
-    fig, ax = plt.subplots(figsize=(10, 4))
-    ax.scatter(df["fecha"], df["valor"], s=20, alpha=0.7, color="#9467bd")
-    ax.set_title(f"{titulo_base} - Dispersión")
-    ax.set_xlabel("Tiempo")
-    ax.set_ylabel("Valor")
-    fig.autofmt_xdate()
-    plt.tight_layout()
-
-    # Preparar columnas temporales
-    dft = preparar_dimensiones_temporales(df)
-
-    # -------- 5) BOXPLOT POR MES (agregado por mes) --------
-    # Si hay múltiples observaciones por mes, esto muestra distribución.
-    fig, ax = plt.subplots(figsize=(10, 4))
-    order_meses = [1,2,3,4,5,6,7,8,9,10,11,12]
-    sns.boxplot(
-        data=dft,
-        x="mes",
-        y="valor",
-        order=order_meses,
-        ax=ax,
-        color="#8c564b"
+    largo = pd.concat(largos, ignore_index=True)
+    # Agregar seguridad por si hay duplicados por fecha/serie
+    largo = (
+        largo.groupby(["fecha", "serie"], as_index=False)["valor"]
+        .mean()
+        .sort_values("fecha")
     )
-    ax.set_title(f"{titulo_base} - Boxplot por mes")
-    ax.set_xlabel("Mes")
-    ax.set_ylabel("Valor")
-    ax.set_xticklabels([ "Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic" ])
-    plt.tight_layout()
+    return largo
 
-    # -------- 6) HEATMAP TEMPORAL --------
-    # Si hay componente horario, usamos DíaSemana×Hora; si no, Año×Mes.
-    if hay_componente_hora(df["fecha"]):
-        # Promedio por (día de semana, hora)
-        piv = dft.pivot_table(index="dow", columns="hora", values="valor", aggfunc="mean")
-        # Reordenar días L->D
-        piv = piv.reindex([0,1,2,3,4,5,6])
-        fig, ax = plt.subplots(figsize=(12, 4))
-        sns.heatmap(piv, cmap="YlOrRd", ax=ax, cbar_kws={"label": "Valor medio"})
-        ax.set_title(f"{titulo_base} - Heatmap (Día de semana × Hora)")
-        ax.set_xlabel("Hora del día")
-        ax.set_ylabel("Día de la semana")
-        ax.set_yticklabels(["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"], rotation=0)
-        plt.tight_layout()
+
+def plot_series_desde_lista(
+    dfs: List[pd.DataFrame],
+    x_col: str = "fecha",
+    y_cols: Optional[List[str]] = None,
+    label_col: Optional[str] = None,
+    titulo: str = "Comparación de series",
+    unidad: str = "",
+    normalizar: bool = False,
+    apilado: bool = False,  # True=área apilada, False=líneas superpuestas
+    max_series: int = 5,
+    figsize=(12, 6)
+):
+    """
+    Lee una lista de DataFrames y grafica hasta 5 series en una sola figura (plt/sns).
+    - apilado=True: área apilada (stackplot).
+    - apilado=False: líneas superpuestas.
+    - normalizar=True: normaliza cada serie a [0,1].
+    Muestra inmediatamente (no guarda).
+    """
+    sns.set(style="whitegrid")
+    largo = preparar_largo_desde_lista(
+        dfs, x_col=x_col, y_cols=y_cols, label_col=label_col, max_series=max_series
+    )
+
+    # Normalizar si aplica (por serie)
+    if normalizar:
+        largo["valor"] = largo.groupby("serie")["valor"].transform(
+            lambda s: (s - s.min()) / (s.max() - s.min()) if s.max() != s.min() else 0.0
+        )
+
+    fig, ax = plt.subplots(figsize=figsize)
+
+    if apilado:
+        # Pivot para stackplot (área apilada)
+        piv = largo.pivot(index="fecha", columns="serie", values="valor").sort_index().fillna(0.0)
+        x = piv.index
+        ys = piv.values.T  # shape: (n_series, n_points)
+        labels = piv.columns.tolist()
+        ax.stackplot(x, ys, labels=labels, alpha=0.85)
     else:
-        # Promedio por (año, mes)
-        piv = dft.pivot_table(index="anio", columns="mes", values="valor", aggfunc="mean")
-        # Asegurar 12 columnas (1-12)
-        piv = piv.reindex(columns=range(1,13))
-        fig, ax = plt.subplots(figsize=(12, 4))
-        sns.heatmap(piv, cmap="YlGnBu", ax=ax, cbar_kws={"label": "Valor medio"})
-        ax.set_title(f"{titulo_base} - Heatmap (Año × Mes)")
-        ax.set_xlabel("Mes")
-        ax.set_ylabel("Año")
-        ax.set_xticklabels([ "Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic" ], rotation=0)
-        plt.tight_layout()
+        # Líneas superpuestas
+        for serie, sub in largo.groupby("serie"):
+            sub = sub.sort_values("fecha")
+            ax.plot(sub["fecha"], sub["valor"], label=str(serie), linewidth=2)
 
+    # Títulos y ejes
+    ax.set_title(titulo + (" (normalizado)" if normalizar else ""), fontsize=15)
+    ax.set_xlabel("Tiempo")
+    ax.set_ylabel(f"Valor {unidad}".strip())
+    ax.legend(ncol=2, frameon=True, fontsize=9)
+    fig.autofmt_xdate()
+    plt.tight_layout()
     plt.show()
-
-

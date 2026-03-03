@@ -46,28 +46,44 @@ if Seleccion == "a":
     df = load_to_dataframe(ruta_archivo)
     columnas = obtener_columnas_df(df)
 
-
-
+data = []
 ### FIltro de columnas
-df_filtro = ejecutar_interactivo(df)
-print("¿Desea realizar otro filtro? (s/n)")
-if input().lower() == "s":
-    x = True
-    while x == True:
+
+
+def si_no(prompt: str) -> bool:
+    while True:
+        r = input(f"{prompt} (s/n): ").strip().lower()
+        if r in ("s", "n"):
+            return r == "s"
+        print("→ Por favor responde con 's' o 'n'.")
+
+y = True
+while y:
+    print("\n=== Nueva ronda de filtrado ===")
+    df_filtro = ejecutar_interactivo(df)
+
+    while si_no("¿Añadir otro filtro sobre el resultado actual?"):
         df_filtro = ejecutar_interactivo(df_filtro)
-        print("¿Desea realizar otro filtro? (s/n)")
-        respuesta = input().lower()
-        if respuesta == "n":
-            x = False
 
+    data.append(df_filtro.copy())
+    print("Resultado guardado.")
 
-print(columnas)
-df_general , meta = Separacion(columnas, df_filtro)
+    y = si_no("¿Empezar a filtrar otro atributo (reiniciar desde df)?")
+
+print(data[0])
+
+sep =[]
+for i in range(len(data)):
+    df_filtro = data[i]
+    df_general , meta = Separacion(columnas, df_filtro)
+    sep.append(df_general)
 
 factor_de_escalado = input("Ingrese el factor de escalado para la segunda columna: ")
-# Cambia la parte donde se asignan las columnas en df_general
-df_general.iloc[:, 0] = pd.to_datetime(df_general.iloc[:, 0])  # Convertir la primera columna a fecha
-df_general = df_general.sort_values(by=df_general.columns[0])  # Ordenar por la primera columna
-df_general.iloc[:, 1] = df_general.iloc[:, 1].div(float(factor_de_escalado))  # Dividir la segunda columna por el factor de escalado
+for i in range(len(sep)):
+    df_general = sep[i]
+    # Cambia la parte donde se asignan las columnas en df_general
+    df_general.iloc[:, 0] = pd.to_datetime(df_general.iloc[:, 0])  # Convertir la primera columna a fecha
+    df_general = df_general.sort_values(by=df_general.columns[0])  # Ordenar por la primera columna
+    df_general.iloc[:, 1] = df_general.iloc[:, 1].div(float(factor_de_escalado))  # Dividir la segunda columna por el factor de escalado
 
 plot_todos(cargar_datos(df=df_general))
