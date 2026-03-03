@@ -3,20 +3,24 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from typing import List, Optional, Union
+from typing import List, Optional
 
 def preparar_largo_desde_lista(
     dfs: List[pd.DataFrame],
     x_col: str = "fecha",
     y_cols: Optional[List[str]] = None,   # si None: intenta ['valor'] o detecta numéricas
     label_col: Optional[str] = None,      # si None: se creará un label por DF (DF1, DF2,...)
-    max_series: int = 5
+    max_series: int = 5,
+    # NUEVOS PARÁMETROS:
+    sintetizar_si_no_hay_fecha: bool = False,   # por defecto, NO inventar fechas
+    sintetico_origen: str = "1970-01-01"        # si sintetizas, puedes ajustar el origen aquí
 ) -> pd.DataFrame:
     """
     Convierte una lista de DataFrames a un DF "largo" con columnas: [fecha, valor, serie].
     - Si y_cols tiene varias columnas, cada una se vuelve una serie separada por DF.
     - Si label_col existe, se usa como nombre de serie; si no, se crea TIPO DF{i}/col.
     - Limita a `max_series` series (para evitar saturación visual).
+    - Si falta la columna de fecha, por defecto lanza error (no sintetiza).
     """
     largos = []
     serie_count = 0
@@ -31,10 +35,17 @@ def preparar_largo_desde_lista(
             tmp[x_col] = pd.to_datetime(tmp[x_col], errors="coerce")
             tmp = tmp.dropna(subset=[x_col]).sort_values(x_col)
         else:
-            # Si no hay x_col, usamos un índice numérico convertido a fechas relativas
-            # (no ideal para calendario, pero permite graficar).
+            # *** CAMBIO CLAVE ***
+            if not sintetizar_si_no_hay_fecha:
+                raise ValueError(
+                    f"El DataFrame #{i} no tiene la columna de fecha '{x_col}'. "
+                    "Para generar fechas artificiales, llama a la función con "
+                    "sintetizar_si_no_hay_fecha=True y ajusta 'sintetico_origen' si lo necesitas."
+                )
+            # Si aceptas sintetizar fechas, crea una secuencia desde 'sintetico_origen'
             tmp = tmp.reset_index(drop=True)
-            tmp[x_col] = pd.to_datetime(np.arange(len(tmp)), unit="D", origin="2025-01-01")
+            base = pd.to_datetime(sintetico_origen)
+            tmp[x_col] = base + pd.to_timedelta(np.arange(len(tmp)), unit="D")
 
         # Determinar columnas de valor
         if y_cols is None:
@@ -105,7 +116,10 @@ def plot_series_desde_lista(
     normalizar: bool = False,
     apilado: bool = False,  # True=área apilada, False=líneas superpuestas
     max_series: int = 5,
-    figsize=(12, 6)
+    figsize=(12, 6),
+    # NUEVOS PARÁMETROS (propagados al preparador):
+    sintetizar_si_no_hay_fecha: bool = False,
+    sintetico_origen: str = "1970-01-01"
 ):
     """
     Lee una lista de DataFrames y grafica hasta 5 series en una sola figura (plt/sns).
@@ -116,7 +130,8 @@ def plot_series_desde_lista(
     """
     sns.set(style="whitegrid")
     largo = preparar_largo_desde_lista(
-        dfs, x_col=x_col, y_cols=y_cols, label_col=label_col, max_series=max_series
+        dfs, x_col=x_col, y_cols=y_cols, label_col=label_col, max_series=max_series,
+        sintetizar_si_no_hay_fecha=sintetizar_si_no_hay_fecha, sintetico_origen=sintetico_origen
     )
 
     # Normalizar si aplica (por serie)

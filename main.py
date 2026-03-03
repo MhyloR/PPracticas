@@ -4,12 +4,12 @@ from Lectura.APlano import load_to_dataframe
 from Procesamiento.Separacion import Separacion
 from Procesamiento.AtributosSelect import ejecutar_interactivo
 from Procesamiento.ObtenerColumnas import obtener_columnas_df
-from Procesamiento.plot_dataframe import cargar_datos, plot_todos
+from Procesamiento.plot_dataframe import plot_series_desde_lista
 from datetime import date
 from dateutil.relativedelta import relativedelta   # viene con python‑dateutil
 
 hoy = date.today()
-tres_meses_atras = hoy - relativedelta(months=3)
+tres_meses_atras = hoy - relativedelta(months=32)
 
 Seleccion = input('¿Trabajara con DataSets o con Archivos Planos? (D/A): ').lower()
 
@@ -70,20 +70,20 @@ while y:
 
     y = si_no("¿Empezar a filtrar otro atributo (reiniciar desde df)?")
 
-print(data[0])
-
+print(columnas)
 sep =[]
 for i in range(len(data)):
     df_filtro = data[i]
     df_general , meta = Separacion(columnas, df_filtro)
     sep.append(df_general)
 
-factor_de_escalado = input("Ingrese el factor de escalado para la segunda columna: ")
+#factor_de_escalado = input("Ingrese el factor de escalado para la segunda columna: ")
 for i in range(len(sep)):
     df_general = sep[i]
     # Cambia la parte donde se asignan las columnas en df_general
     df_general.iloc[:, 0] = pd.to_datetime(df_general.iloc[:, 0])  # Convertir la primera columna a fecha
     df_general = df_general.sort_values(by=df_general.columns[0])  # Ordenar por la primera columna
-    df_general.iloc[:, 1] = df_general.iloc[:, 1].div(float(factor_de_escalado))  # Dividir la segunda columna por el factor de escalado
+    df_general.iloc[:, 1] = df_general.iloc[:, 1]  # Dividir la segunda columna por el factor de escalado
 
-plot_todos(cargar_datos(df=df_general))
+grafica = plot_series_desde_lista(sep,apilado=True)
+print(grafica)
