@@ -1,9 +1,14 @@
 # ejemplo_minimo.py
-from Lectura.Api import get_df_unificado
-from Lectura.Aplano import load_to_dataframe
+from click import Path
+import pandas as pd
+from Read.Api import get_df_unificado
+from Read.FFlat import load_to_dataframe
+from Proccesing.AtribSelect import ejecutar_interactivo
+from Proccesing.Divide import Separacion
 from datetime import date
 from dateutil.relativedelta import relativedelta
-from Normal.Procesamiento.ObtenerColumnas import obtener_columnas_df   # viene con python‑dateutil
+from Proccesing.GetColumns import obtener_columnas_df   # viene con python‑dateutil
+from Proccesing.Save import DataFrameExporter
 
 hoy = date.today()
 tres_meses_atras = hoy - relativedelta(months=3)
@@ -41,6 +46,61 @@ if Seleccion == "a":
     ruta_archivo = input("Ingrese la ruta del archivo plano: ")
     df = load_to_dataframe(ruta_archivo)
     namecolumns = obtener_columnas_df(df)
-    
-print("Filas:", len(df))
-print("Columnas (df.columns):", namecolumns)
+
+
+data = []
+### FIltro de columnas
+
+
+def si_no(prompt: str) -> bool:
+    while True:
+        r = input(f"{prompt} (s/n): ").strip().lower()
+        if r in ("s", "n"):
+            return r == "s"
+        print("→ Por favor responde con 's' o 'n'.")
+
+y = True
+while y:
+    print("\n=== Nueva ronda de filtrado ===")
+    df_filtro = ejecutar_interactivo(df)
+
+    while si_no("¿Añadir otro filtro sobre el resultado actual?"):
+        df_filtro = ejecutar_interactivo(df_filtro)
+
+    data.append(df_filtro.copy())
+    print("Resultado guardado.")
+
+    y = si_no("¿Empezar a filtrar otro atributo (reiniciar desde df)?")
+
+
+for j, item in enumerate(data):
+    df_filtro = item
+    if df_filtro is None or df_filtro.empty:
+        print(f"[WARN] DataFrame {j} está vacío. Se omite.")
+        continue
+
+    file_name = f"data_filtro_{j:03d}"  # nombres ordenados y claros
+    exporter = DataFrameExporter(base_path="outputs", file_name=file_name)
+
+    try:
+        csv_path, json_path = exporter.export(df_filtro)
+        print(f"DataFrame {j} guardado en CSV:  {csv_path}")
+        print(f"DataFrame {j} guardado en JSON: {json_path}")
+    except Exception as e:
+        print(f"[ERROR] No se pudo exportar DataFrame {j}: {e}")
+
+sep =[]
+for i in range(len(data)):
+    df_filtro = data[i]
+    df_general , meta = Separacion(namecolumns, df_filtro)
+    sep.append(df_general)
+
+factor_de_escalado = float(input("Ingrese el factor de escalado para la segunda columna: "))
+
+for i in range(len(sep)):
+    df_general = sep[i].copy()
+    df_general.iloc[:, 0] = pd.to_datetime(df_general.iloc[:, 0], errors="coerce")
+    df_general = df_general.dropna(subset=[df_general.columns[0]])
+    df_general = df_general.sort_values(by=df_general.columns[0])
+    df_general.iloc[:, 1] = df_general.iloc[:, 1].div(float(factor_de_escalado))
+    sep[i] = df_general

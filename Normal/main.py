@@ -1,9 +1,9 @@
 import pandas as pd
 from Lectura.Api import get_df_unificado
 from Lectura.APlano import load_to_dataframe
-from Procesamiento.Separacion import Separacion
-from Procesamiento.AtributosSelect import ejecutar_interactivo
-from Procesamiento.ObtenerColumnas import obtener_columnas_df
+from Procesamiento.Divide import Separacion
+from Procesamiento.AtribSelect import ejecutar_interactivo
+from Procesamiento.GetColumns import obtener_columnas_df
 from Procesamiento.plot_dataframe import plot_series_desde_lista
 from datetime import date
 from dateutil.relativedelta import relativedelta   # viene con python‑dateutil
