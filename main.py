@@ -1,106 +1,110 @@
-# ejemplo_minimo.py
 from click import Path
 import pandas as pd
 from Read.Api import get_df_unificado
 from Read.FFlat import load_to_dataframe
-from Proccesing.AtribSelect import ejecutar_interactivo
-from Proccesing.Divide import Separacion
+from Processing.AtribSelect import ejecutar_interactivo
+from Processing.Divide import Separacion
 from datetime import date
 from dateutil.relativedelta import relativedelta
-from Proccesing.GetColumns import obtener_columnas_df   # viene con python‑dateutil
-from Proccesing.Save import DataFrameExporter
+from Processing.GetColumns import obtener_columnas_df   # viene con python‑dateutil
+from Processing.Save import DataFrameExporter
+    
+today = date.today()
+three_months_ago = today - relativedelta(months=3)
 
+selection = input('Will you work with DataSets or Flat Files? (D/F): ').lower()
 
-hoy = date.today()
-tres_meses_atras = hoy - relativedelta(months=3)
+if selection == "d":
+    # Dataset request
+    input_set = input("Enter the dataset ID to process: ")
 
-Seleccion = input('¿Trabajara con DataSets o con Archivos Planos? (D/A): ').lower()
+    print("Please enter the date range to process. If nothing is entered, the last three months of data will be used.")
+    start_date = input("Enter the start date (YYYY-MM-DD): ")
 
-if Seleccion == "d":
-    ## Solicitud de set##
-    input_set = input("Ingrese el dataset ID a tratar: ")
-    print("Porfavor, ingrese el rango de fechas a tratar, si no se ingresa nada, se tomara el ultimos tres meses de datos disponibles")
-    FechaInicio = input("Ingrese la fecha de inicio (YYYY-MM-DD): ")
+    if not start_date:
+        start_date = three_months_ago.isoformat()
 
-    if not FechaInicio:
-        FechaInicio = tres_meses_atras.isoformat()
+    print("Start date:", start_date)
+    end_date = input("Enter the end date (YYYY-MM-DD): ")
 
-    print ("Fecha de inicio:", FechaInicio)
-    FechaFin = input("Ingrese la fecha de fin (YYYY-MM-DD): ")
-    if not FechaFin:
-        FechaFin = hoy.isoformat()
+    if not end_date:
+        end_date = today.isoformat()
 
-    print ("Fecha de fin:", FechaFin)
+    print("End date:", end_date)
 
-    resultado = get_df_unificado(
+    result = get_df_unificado(
         dataset_id=input_set,
-        fecha_inicio=FechaInicio,
-        fecha_final=FechaFin,
-        include_namecolumns=False  # usa df.columns (no consulta endpoint)
+        fecha_inicio=start_date,
+        fecha_final=end_date,
+        include_namecolumns=False  # uses df.columns (does not query endpoint)
     )
 
-    df = resultado["dataframe"]
-    namecolumns = resultado["namecolumns"]
-    
-if Seleccion == "a":
-    print("Tomate")
-    ruta_archivo = input("Ingrese la ruta del archivo plano: ")
-    df = load_to_dataframe(ruta_archivo)
+    df = result["dataframe"]
+    namecolumns = result["namecolumns"]
+
+if selection == "f":
+    print("Loading file...")
+    file_path = input("Enter the path to the flat file: ")
+    df = load_to_dataframe(file_path)
     namecolumns = obtener_columnas_df(df)
 
 data = []
-### FIltro de columnas
 
-
-def si_no(prompt: str) -> bool:
+# Yes/no helper for interactive input
+def yes_no(prompt: str) -> bool:
     while True:
-        r = input(f"{prompt} (s/n): ").strip().lower()
-        if r in ("s", "n"):
-            return r == "s"
-        print("→ Por favor responde con 's' o 'n'.")
+        r = input(f"{prompt} (y/n): ").strip().lower()
+        if r in ("y", "n"):
+            return r == "y"
+        print("→ Please respond with 'y' or 'n'.")
 
-y = True
-while y:
-    print("\n=== Nueva ronda de filtrado ===")
-    df_filtro = ejecutar_interactivo(df)
+continue_filtering = True
 
-    while si_no("¿Añadir otro filtro sobre el resultado actual?"):
-        df_filtro = ejecutar_interactivo(df_filtro)
+# Filtering stage
+while continue_filtering:
+    print("\n=== New Filtering Round ===")
+    df_filtered = ejecutar_interactivo(df)
 
-    data.append(df_filtro.copy())
-    print("Resultado guardado.")
+    while yes_no("Add another filter on the current result?"):
+        df_filtered = ejecutar_interactivo(df_filtered)
 
-    y = si_no("¿Empezar a filtrar otro atributo (reiniciar desde df)?")
+    data.append(df_filtered.copy())
+    print("Filtered result saved.")
 
+    continue_filtering = yes_no("Start filtering another attribute (restart from original df)?")
 
+# Export stage
 for j, item in enumerate(data):
-    df_filtro = item
-    if df_filtro is None or df_filtro.empty:
-        print(f"[WARN] DataFrame {j} está vacío. Se omite.")
+    df_filtered = item
+    if df_filtered is None or df_filtered.empty:
+        print(f"[WARN] DataFrame {j} is empty. Skipping.")
         continue
 
-    file_name = f"data_filtro_{j:03d}"  # nombres ordenados y claros
+    file_name = f"filtered_data_{j:03d}"
     exporter = DataFrameExporter(base_path="outputs", file_name=file_name)
 
     try:
-        csv_path, json_path = exporter.export(df_filtro)
-        print(f"DataFrame {j} guardado en CSV:  {csv_path}")
-        print(f"DataFrame {j} guardado en JSON: {json_path}")
+        csv_path, json_path = exporter.export(df_filtered)
+        print(f"DataFrame {j} saved as CSV:  {csv_path}")
+        print(f"DataFrame {j} saved as JSON: {json_path}")
     except Exception as e:
-        print(f"[ERROR] No se pudo exportar DataFrame {j}: {e}")
+        print(f"[ERROR] Could not export DataFrame {j}: {e}")
 
-sep =[]
+# Separation stage
+sep = []
 for i in range(len(data)):
-    df_filtro = data[i]
-    df_general , meta = Separacion(namecolumns, df_filtro)
+    df_filtered = data[i]
+    df_general, meta = Separacion(namecolumns, df_filtered)
     sep.append(df_general)
 
-factor_de_escalado = float(input("Ingrese el factor de escalado para la segunda columna: "))
+# Scaling factor
+scaling_factor = float(input("Enter the scaling factor for the second column: "))
 
+# Apply scaling and cleanup
 for i in range(len(sep)):
     df_general = sep[i].copy()
     df_general.iloc[:, 0] = pd.to_datetime(df_general.iloc[:, 0], errors="coerce")
     df_general = df_general.dropna(subset=[df_general.columns[0]])
     df_general = df_general.sort_values(by=df_general.columns[0])
-    df_general.iloc[:, 1] = df_general.iloc[:, 1].div(float(factor_de_escalado))
+    df_general.iloc[:, 1] = df_general.iloc[:, 1].div(float(scaling_factor))
     sep[i] = df_general

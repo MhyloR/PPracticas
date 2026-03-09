@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
-from pathlib import Path
 from typing import Optional, Any, Dict, Tuple
 
 import pandas as pd
@@ -100,10 +99,24 @@ class ColumnExporterService:
 
         resultados: Dict[str, int] = {}
 
+        # Precompute distinct values, ensuring NaN is included if present in the series
+        valores_unicos = serie.drop_duplicates(keep="first")
+        if serie.isna().any() and not valores_unicos.isna().any():
+            valores_unicos = pd.concat(
+                [valores_unicos, pd.Series([float("nan")])],
+                ignore_index=True
+            )
+
         # ----------------------------------------------------------------------
-        # Case 1: filter ONLY the target value
+        # Case 1: filter ONLY the target value (must be one of the available options)
         # ----------------------------------------------------------------------
         if req.valor_objetivo is not None:
+            if not self._valor_en_opciones(req.valor_objetivo, valores_unicos):
+                opciones_legibles = [self._etiqueta_de_valor(v) for v in valores_unicos]
+                raise ValidationError(
+                    f"Provided value is not among available options. "
+                    f"value={self._etiqueta_de_valor(req.valor_objetivo)} | options={opciones_legibles}"
+                )
             subset, etiqueta = self._filtrar(serie, req.valor_objetivo, df)
             resultados[etiqueta] = len(subset)
             # Return only the subset (matching original semantics when a target is provided)
@@ -112,17 +125,6 @@ class ColumnExporterService:
         # ----------------------------------------------------------------------
         # Case 2: process ALL distinct values in the column
         # ----------------------------------------------------------------------
-        # drop_duplicates keeps the first occurrence; dtype=object keeps original representations
-        valores_unicos = serie.drop_duplicates(keep="first")
-
-        # If the original series contains NaN but drop_duplicates removed it (common case),
-        # explicitly append a NaN so it is processed as a distinct bucket.
-        if serie.isna().any() and not valores_unicos.isna().any():
-            valores_unicos = pd.concat(
-                [valores_unicos, pd.Series([float("nan")])],
-                ignore_index=True
-            )
-
         # Build counts for each unique value; keep only non-empty subsets
         for valor in valores_unicos:
             subset, etiqueta = self._filtrar(serie, valor, df)
@@ -149,6 +151,24 @@ class ColumnExporterService:
             etiqueta = str(valor)
         return df.loc[mascara], etiqueta
 
+    def _valor_en_opciones(self, valor: Any, opciones: pd.Series) -> bool:
+        """
+        Check if 'valor' is one of the allowed options (including NaN semantics).
+        """
+        if pd.isna(valor):
+            return opciones.isna().any()
+        # Compare by equality; for objects/strings should work as expected
+        try:
+            return any((~opciones.isna()) & (opciones == valor))
+        except Exception:
+            # Fallback: string comparison if native equality fails for complex types
+            return any(str(v) == str(valor) for v in opciones.tolist())
+
+    @staticmethod
+    def _etiqueta_de_valor(valor: Any) -> str:
+        """Consistent human-readable label, treating NaN distinctly."""
+        return "NaN" if pd.isna(valor) else str(valor)
+
 
 # =============================================================================
 # COMPATIBLE API (SAME SIGNATURE, NO CSV)
@@ -172,38 +192,44 @@ def exportar_por_columna(
 
 
 # =============================================================================
-# INTERACTIVE MODE (kept the same user experience)
+# INTERACTIVE MODE (strict validation of user input)
 # =============================================================================
 def _elegir_columna_interactivo(df: pd.DataFrame) -> str:
     """
-    Show available columns and let the user pick by index or exact name.
-    Mirrors the original console interaction and validation.
+    Show available columns and force the user to choose either:
+    - A valid numeric index in range [1..N], or
+    - An exact column name present in the DataFrame.
+    Keeps prompting until a valid input is provided.
     """
     columnas = list(df.columns)
-    print("\nAvailable columns:")
-    for i, c in enumerate(columnas, start=1):
-        print(f"  {i}. {c}")
+    while True:
+        print("\nAvailable columns:")
+        for i, c in enumerate(columnas, start=1):
+            print(f"  {i}. {c}")
 
-    entrada = input("\nChoose column (number or exact name): ").strip()
+        entrada = input("\nChoose column (number or exact name): ").strip()
 
-    # If the user types a number, interpret as 1-based index
-    if entrada.isdigit():
-        idx = int(entrada)
-        if 1 <= idx <= len(columnas):
-            return columnas[idx - 1]
-        raise ValueError("Index out of range.")
+        # Numeric selection with 1-based index
+        if entrada.isdigit():
+            idx = int(entrada)
+            if 1 <= idx <= len(columnas):
+                return columnas[idx - 1]
+            print(f"Error: index out of range (1..{len(columnas)}). Please try again.")
+            continue
 
-    # Otherwise, try exact match by name
-    if entrada in df.columns:
-        return entrada
+        # Exact name match
+        if entrada in df.columns:
+            return entrada
 
-    raise KeyError(f"Column '{entrada}' does not exist.")
+        print(f"Error: column '{entrada}' does not exist. Please choose a valid option.")
 
 
 def _elegir_valor_interactivo(serie: pd.Series) -> Any:
     """
-    List distinct values (including NaN if present) and allow the user to select
-    by number or by typing the exact textual representation.
+    List distinct values (including NaN if present) and force the user to select:
+    - A valid numeric index within the shown range, or
+    - An exact textual value that matches one of the shown options (including 'NaN').
+    Keeps prompting until a valid input is provided.
     """
     serie_obj = serie.astype("object")
 
@@ -212,24 +238,40 @@ def _elegir_valor_interactivo(serie: pd.Series) -> Any:
     if serie_obj.isna().any() and not valores.isna().any():
         valores = pd.concat([valores, pd.Series([float("nan")])], ignore_index=True)
 
-    print("\nAvailable values:")
-    for i, v in enumerate(valores, start=1):
-        print(f"{i}. {v}")
+    # Precompute human-readable labels (strings), mapping to actual values
+    opciones: list[tuple[str, Any]] = []
+    for v in valores:
+        etiqueta = "NaN" if pd.isna(v) else str(v)
+        opciones.append((etiqueta, v))
 
-    entrada = input("\nChoose value (number or exact text): ").strip()
+    while True:
+        print("\nAvailable values:")
+        for i, (etiqueta, _) in enumerate(opciones, start=1):
+            print(f"{i}. {etiqueta}")
 
-    if entrada.isdigit():
-        idx = int(entrada)
-        return valores.iloc[idx - 1]
+        entrada = input("\nChoose value (number in list or exact text): ").strip()
 
-    # If text is provided, return it as-is (upstream comparison will handle types/strings)
-    return entrada
+        # Case 1: number in range
+        if entrada.isdigit():
+            idx = int(entrada)
+            if 1 <= idx <= len(opciones):
+                return opciones[idx - 1][1]
+            print(f"Error: index out of range (1..{len(opciones)}). Please try again.")
+            continue
+
+        # Case 2: exact textual match to one of the shown labels
+        matches = [v for (etiqueta, v) in opciones if etiqueta == entrada]
+        if matches:
+            return matches[0]
+
+        print("Error: value not in the available options. Please select a valid number or exact text.")
 
 
 def ejecutar_interactivo(df: pd.DataFrame) -> pd.DataFrame:
     """
     Same interactive function as the original code,
     but NO CSVs are generated—only in-memory results are shown.
+    Now enforces that the selection is one of the displayed options.
     Returns the subset DataFrame that matches the chosen value.
     """
     print("=== Export by column value (NO CSV will be generated) ===")
