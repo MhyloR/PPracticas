@@ -1,6 +1,7 @@
 # ejemplo_minimo.py
 from click import Path
 import pandas as pd
+<<<<<<< HEAD
 from Read.Api import get_df_unificado
 from Read.FFlat import load_to_dataframe
 from Proccesing.AtribSelect import ejecutar_interactivo
@@ -9,6 +10,16 @@ from datetime import date
 from dateutil.relativedelta import relativedelta
 from Proccesing.GetColumns import obtener_columnas_df   # viene con python‑dateutil
 from Proccesing.Save import DataFrameExporter
+=======
+from Lectura.Api import get_df_unificado
+from Lectura.Aplano import load_to_dataframe
+from Procesamiento.AtributosSelect import ejecutar_interactivo
+from Procesamiento.Separacion import Separacion
+from datetime import date
+from dateutil.relativedelta import relativedelta
+from Procesamiento.ObtenerColumnas import obtener_columnas_df   # viene con python‑dateutil
+from Procesamiento.temp_write import guardar_csv_temporal_en_almacenamiento
+>>>>>>> 188cb6f67563731ef3fec4a222563db5419f7249
 
 hoy = date.today()
 tres_meses_atras = hoy - relativedelta(months=3)
@@ -48,6 +59,23 @@ if Seleccion == "a":
     namecolumns = obtener_columnas_df(df)
 
 
+<<<<<<< HEAD
+=======
+
+ruta = guardar_csv_temporal_en_almacenamiento(df)
+
+print("CSV temporal generado en:", ruta)
+print("Contenido del archivo:")
+print(Path(ruta).read_text(encoding="utf-8"))
+
+# Ejemplo: verificar existencia
+print("¿Existe?", Path(ruta).exists())
+
+print("Filas:", len(df))
+print("Columnas:", namecolumns)
+
+
+>>>>>>> 188cb6f67563731ef3fec4a222563db5419f7249
 data = []
 ### FIltro de columnas
 
@@ -73,6 +101,7 @@ while y:
     y = si_no("¿Empezar a filtrar otro atributo (reiniciar desde df)?")
 
 
+<<<<<<< HEAD
 for j, item in enumerate(data):
     df_filtro = item
     if df_filtro is None or df_filtro.empty:
@@ -88,6 +117,9 @@ for j, item in enumerate(data):
         print(f"DataFrame {j} guardado en JSON: {json_path}")
     except Exception as e:
         print(f"[ERROR] No se pudo exportar DataFrame {j}: {e}")
+=======
+print(namecolumns)
+>>>>>>> 188cb6f67563731ef3fec4a222563db5419f7249
 
 sep =[]
 for i in range(len(data)):
@@ -104,3 +136,9 @@ for i in range(len(sep)):
     df_general = df_general.sort_values(by=df_general.columns[0])
     df_general.iloc[:, 1] = df_general.iloc[:, 1].div(float(factor_de_escalado))
     sep[i] = df_general
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 188cb6f67563731ef3fec4a222563db5419f7249
