@@ -10,6 +10,7 @@ from dateutil.relativedelta import relativedelta
 from Proccesing.GetColumns import obtener_columnas_df   # viene con python‑dateutil
 from Proccesing.Save import DataFrameExporter
 
+
 hoy = date.today()
 tres_meses_atras = hoy - relativedelta(months=3)
 
@@ -46,7 +47,6 @@ if Seleccion == "a":
     ruta_archivo = input("Ingrese la ruta del archivo plano: ")
     df = load_to_dataframe(ruta_archivo)
     namecolumns = obtener_columnas_df(df)
-
 
 data = []
 ### FIltro de columnas
