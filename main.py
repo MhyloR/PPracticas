@@ -1,5 +1,6 @@
 from click import Path
 import pandas as pd
+from Processing.deleite import DirectoryCleaner
 from Read.Api import get_df_unificado
 from Read.FFlat import load_to_dataframe
 from Processing.AtribSelect import ejecutar_interactivo
@@ -41,6 +42,9 @@ if selection == "d":
 
     df = result["dataframe"]
     namecolumns = result["namecolumns"]
+    file_name = f"filtered_data_{input_set}_{start_date}_to_{end_date}"
+    info = DataFrameExporter(base_path="Storage", file_name=file_name)
+    csv_path, json_path = info.export(df)
 
 if selection == "f":
     print("Loading file...")
@@ -90,6 +94,18 @@ for j, item in enumerate(data):
     except Exception as e:
         print(f"[ERROR] Could not export DataFrame {j}: {e}")
 
+delete = input('Do u want to clean the output directory? (y/n): ').lower()
+if delete == "y":
+    cleaner = DirectoryCleaner("outputs")
+    cleaner.delete_all(
+        recursive=True,
+        exclude=[],
+        dry_run=False,
+        verbose=True
+    )
+else:
+    pass
+
 # Separation stage
 sep = []
 for i in range(len(data)):
@@ -108,3 +124,5 @@ for i in range(len(sep)):
     df_general = df_general.sort_values(by=df_general.columns[0])
     df_general.iloc[:, 1] = df_general.iloc[:, 1].div(float(scaling_factor))
     sep[i] = df_general
+
+
