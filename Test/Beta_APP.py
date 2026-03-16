@@ -10,6 +10,59 @@ st.set_page_config(
 )
 
 # -----------------------
+# Estilos globales (fondo página y sidebar)
+# -----------------------
+st.markdown("""
+    <style>
+    /* Fondo del contenedor principal de la app */
+    [data-testid="stAppViewContainer"] {
+        background-color: #E6E6E6;
+    }
+
+    /* Fondo del sidebar */
+    [data-testid="stSidebar"] {
+        background-color: #672F9C !important;
+    }
+
+    /* Texto dentro del sidebar en blanco para contraste */
+    [data-testid="stSidebar"] * {
+        color: #FFFFFF !important;
+    }
+
+    /* Color del label seleccionado en radio/select dentro del sidebar */
+    [data-testid="stSidebar"] .st-bx, 
+    [data-testid="stSidebar"] .st-bz,
+    [data-testid="stSidebar"] label {
+        color: #FFFFFF !important;
+    }
+
+    /* Inputs del sidebar con borde y fondo legible */
+    [data-testid="stSidebar"] .stTextInput>div>div>input,
+    [data-testid="stSidebar"] .stSelectbox>div>div>div,
+    [data-testid="stSidebar"] .stDateInput>div>div>input {
+        background-color: #FFFFFF !important;
+        color: #000000 !important;
+        border-radius: 6px;
+    }
+
+    /* Botones en el sidebar con bordes visibles */
+    [data-testid="stSidebar"] button[kind="secondary"] {
+        color: #672F9C !important;
+        background-color: #FFFFFF !important;
+        border: 1px solid #FFFFFF33 !important;
+        border-radius: 8px;
+    }
+
+    /* Ajuste de títulos en sidebar para buena jerarquía visual */
+    [data-testid="stSidebar"] h1, 
+    [data-testid="stSidebar"] h2, 
+    [data-testid="stSidebar"] h3 {
+        color: #FFFFFF !important;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+# -----------------------
 # Inicializar estado
 # -----------------------
 if "datos_cargados" not in st.session_state:
@@ -21,7 +74,6 @@ if "filtros_aplicados" not in st.session_state:
 if "mostrar_grafica" not in st.session_state:
     st.session_state.mostrar_grafica = False
 
-
 # -----------------------
 # Header
 # -----------------------
@@ -31,7 +83,7 @@ st.markdown(
         background-color:#5b1fa6;
         padding:15px;
         border-radius:5px;
-        color:white;
+        color:White;
         text-align:center;
         font-size:20px;
         font-weight:bold;">
@@ -58,9 +110,31 @@ with st.sidebar:
 # VISTA: Documentación
 # =======================
 if vista == "Documentación":
-    st.header("Hola")
-    st.subheader("Heading")
-    st.write("Info general de la página y que tales")
+    
+    st.markdown("""
+    <h2>
+        <span style="color:#000000;">hola</span>
+    </h2>
+    """, unsafe_allow_html=True)
+
+
+    st.markdown("""
+        <div style="
+            border: 3px solid #571D92;
+            background-color: #F4F3FA;
+            border-radius: 12px;
+            padding: 20px;
+            min-height: 300px;
+        ">
+            <h3 style="color:#571D92; margin-top:0;">
+                Heading
+            </h3>
+            <p style="color:#000000;">
+                Info general de la página y que tales
+            </p>
+        </div>
+    """, unsafe_allow_html=True)
+
 
 # =======================
 # VISTA: Generación de gráficos
@@ -73,17 +147,29 @@ if vista == "Generación de gráficos":
     # Panel de filtros
     # -----------------------
     with col_filtros:
-        st.subheader("Configuración")
+        st.markdown("""
+            <div style="
+                font-weight:600;
+                font-size:28px;
+                color:#571D92;
+                margin-bottom:10px;
+            ">
+                Configuración
+            </div>
+        """, unsafe_allow_html=True)
+
+        st.markdown("""
+            <p style="font-weight:600; color:#571D92; margin-bottom:4px;">
+                Fuente de datos
+            </p>
+        """, unsafe_allow_html=True)
 
         fuente = st.selectbox(
-            "Fuente",
-            ["SIMEM", "Archivo Plano"]
+            "Fuente de datos",  
+            ["SIMEM", "Archivo Plano"],
+            label_visibility="collapsed"
         )
 
-        variable = st.selectbox(
-            "Variable",
-            ["Global", "Global flexible"]
-        )
 
         fecha = st.date_input("Fecha")
 
@@ -124,7 +210,16 @@ if vista == "Generación de gráficos":
     # Panel de gráfica
     # -----------------------
     with col_grafica:
-        st.subheader("Visualización")
+        st.markdown("""
+            <div style="
+                font-weight:600;
+                font-size:28px;
+                color:#571D92;
+                margin-bottom:10px;
+            ">
+                Visualización
+            </div>
+        """, unsafe_allow_html=True)
 
         eje_x = st.selectbox("EJE X", ["Tiempo", "Fecha", "Periodo"])
         eje_y = st.selectbox("EJE Y", ["Valor", "Promedio", "Índice"])
