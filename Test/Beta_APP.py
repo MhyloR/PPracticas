@@ -196,28 +196,53 @@ elif vista == "Generación de gráficos":
     with col_filtros:
         st.markdown('<div class="section-title">Configuración</div>', unsafe_allow_html=True)
 
+        # Fuente de datos
         st.markdown('<p style="font-weight:600;color:var(--accent);margin:0 0 var(--xs) 0;">Fuente de datos</p>', unsafe_allow_html=True)
-        fuente = st.selectbox("Fuente de datos", ["SIMEM", "Archivo Plano"], label_visibility="collapsed")
+        fuente = st.selectbox("Fuente de datos", ["SIMEM", "Archivo Plano"], label_visibility="collapsed", key="fuente_datos")
+
+        # >>> Interacción condicional según fuente <<<
+        if fuente == "SIMEM":
+            c1, c2 = st.columns(2)
+            with c1:
+                st.markdown('<p style="font-weight:600;color:var(--accent);margin:0 0 var(--xs) 0;">Dataset ID</p>', unsafe_allow_html=True)
+                dataset_id = st.text_input("Dataset ID", placeholder="Ej: 12345-abc", label_visibility="collapsed", key="simem_dataset_id")
+            with c2:
+                st.markdown('<p style="font-weight:600;color:var(--accent);margin:0 0 var(--xs) 0;">Nombre de conjunto de datos</p>', unsafe_allow_html=True)
+                dataset_name = st.text_input("Nombre de conjunto de datos", placeholder="Ej: SIMEM - Producción", label_visibility="collapsed", key="simem_dataset_name")
+        else:
+            st.markdown('<p style="font-weight:600;color:var(--accent);margin:0 0 var(--xs) 0;">Cargar archivo</p>', unsafe_allow_html=True)
+            archivo_plano = st.file_uploader(
+                "Selecciona un archivo",
+                type=["csv", "xlsx", "xls", "parquet"],
+                accept_multiple_files=False,
+                label_visibility="collapsed",
+                help="Formatos permitidos: CSV, Excel (XLS/XLSX) o Parquet"
+            )
+
+        # Fechas
         st.markdown('<p style="font-weight:600;color:var(--accent);margin:0 0 var(--xs) 0;">Fecha Inicio</p>', unsafe_allow_html=True)
-        fecha_inicio  = st.date_input("fecha de consulta", label_visibility="collapsed")
+        fecha_inicio  = st.date_input("fecha de consulta", label_visibility="collapsed", key="fecha_inicio")
 
         st.markdown('<p style="font-weight:600;color:var(--accent);margin:0 0 var(--xs) 0;">Fecha Fin</p>', unsafe_allow_html=True)
-        fecha_fin  = st.date_input("fecha de consulta1", label_visibility="collapsed")
+        fecha_fin  = st.date_input("fecha de consulta1", label_visibility="collapsed", key="fecha_fin")
 
+        # Panel de filtro (con el mismo estilo)
         with st.container(border=True, key="filtro"):
             st.markdown("### Filtro")
+            opciones_filtro = ["Etapa", "Código Agente", "Actividad", "Código SIC Agente", "Versión"]
             seleccion = st.radio(
                 label="Selecciona un filtro",
-                options=["Etapa", "Código Agente", "Actividad", "Código SIC Agente", "Versión"],
-                index=["Etapa", "Código Agente", "Actividad", "Código SIC Agente", "Versión"].index(st.session_state["filtro_sel"]),
+                options=opciones_filtro,
+                index=opciones_filtro.index(st.session_state["filtro_sel"]),
                 label_visibility="collapsed",
                 horizontal=False,
                 key="filtro_radio",
             )
             st.session_state["filtro_sel"] = seleccion
             st.markdown(f"<div class='muted'>Opción actual: {st.session_state['filtro_sel']}</div>", unsafe_allow_html=True)
+
         st.markdown('<p style="font-weight:600;color:var(--accent);margin:0 0 var(--xs) 0;">Valor de filtro</p>', unsafe_allow_html=True)
-        valor_filtro = st.selectbox("Valor del filtro", ["001", "002", "003"], label_visibility="collapsed")
+        valor_filtro = st.selectbox("Valor del filtro", ["001", "002", "003"], label_visibility="collapsed", key="valor_filtro")
 
         # Botones con el mismo ancho y márgenes coherentes
         b1, b2, b3 = st.columns(3)
@@ -231,7 +256,8 @@ elif vista == "Generación de gráficos":
                 st.session_state["datos_cargados"] = True
                 st.session_state["filtros_aplicados"].append(f"{seleccion}: {valor_filtro}")
         with b3:
-            if st.button("Generar gráfica", use_container_width=True):
+            # Habilitar el botón solo si hay datos cargados
+            if st.button("Generar gráfica", use_container_width=True, disabled=not st.session_state["datos_cargados"]):
                 if st.session_state["datos_cargados"]:
                     st.session_state["mostrar_grafica"] = True
 
@@ -239,9 +265,9 @@ elif vista == "Generación de gráficos":
     with col_grafica:
         st.markdown('<div class="section-title">Visualización</div>', unsafe_allow_html=True)
         st.markdown('<p style="font-weight:600;color:var(--accent);margin:0 0 var(--xs) 0;">EJE X</p>', unsafe_allow_html=True)
-        eje_x = st.selectbox("EJE X", ["Tiempo", "Fecha", "Periodo"], label_visibility="collapsed")
+        eje_x = st.selectbox("EJE X", ["Tiempo", "Fecha", "Periodo"], label_visibility="collapsed", key="eje_x")
         st.markdown('<p style="font-weight:600;color:var(--accent);margin:0 0 var(--xs) 0;">EJE Y</p>', unsafe_allow_html=True)
-        eje_y = st.selectbox("EJE Y", ["Valor", "Promedio", "Índice"], label_visibility="collapsed")
+        eje_y = st.selectbox("EJE Y", ["Valor", "Promedio", "Índice"], label_visibility="collapsed", key="eje_y")
 
         if st.session_state["mostrar_grafica"]:
             data_fake = {
@@ -249,10 +275,9 @@ elif vista == "Generación de gráficos":
                 "Cebolla": [random.randint(0, 10) for _ in range(5)],
             }
             st.line_chart(data_fake, height=300)
-        
+
         st.markdown('<p style="font-weight:600;color:var(--accent);margin:0 0 var(--xs) 0;">Filtros aplicados</p>', unsafe_allow_html=True)
         st.write(st.session_state["filtros_aplicados"])
-
 # =========================
 # VISTA: Outliers
 # =========================
