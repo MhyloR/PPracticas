@@ -18,13 +18,17 @@ TEXT_DARK   = "#000000"
 MUTED       = "#9AA0AA"
 RADIUS      = "12px"
 
-# Colores del cuadro (edita aquí y afecta a todos los date_input)
+# Colores del cuadro (edita aquí y afecta a todos los inputs)
 INPUT_BG    = "#FFFFFF"   # fondo del cuadro
 INPUT_TEXT  = "#111827"   # texto
 INPUT_BORDER= "#D1D5DB"   # borde visible (interno)
 INPUT_FOCUS = "#6366F1"   # color de foco e ícono
 
-SPACE_XS="6px"; SPACE_S="10px"; SPACE_M="16px"; SPACE_L="20px"; SPACE_XL="28px"
+SPACE_XS="6px"; 
+SPACE_S="10px"; 
+SPACE_M="16px"; 
+SPACE_L="20px"; 
+SPACE_XL="28px"
 
 # =========================
 # Estilos globales
@@ -88,6 +92,51 @@ st.markdown(f"""
   outline: none !important;
 }}
 [data-testid="stDateInput"] svg{{ color: var(--input-focus) !important; }}
+
+/* === INPUTS EN CONTENIDO PRINCIPAL (NO SIDEBAR) === */
+/* TextInput: input real */
+div[data-testid="stAppViewContainer"] .stTextInput > div > div > input {{
+  background: var(--input-bg) !important;
+  color: var(--input-text) !important;
+  border: 1px solid var(--input-border) !important;
+  border-radius: 10px !important;
+  padding: 10px 14px !important;
+  box-shadow: none !important;
+}}
+/* TextInput: wrapper baseweb */
+div[data-testid="stAppViewContainer"] .stTextInput [data-baseweb="input"] {{
+  background: var(--input-bg) !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 10px !important;
+}}
+
+/* Selectbox: área visible */
+div[data-testid="stAppViewContainer"] .stSelectbox > div > div {{
+  background: var(--input-bg) !important;
+  color: var(--input-text) !important;
+  border: 1px solid var(--input-border) !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
+}}
+/* Selectbox: wrapper baseweb y foco */
+div[data-testid="stAppViewContainer"] .stSelectbox [data-baseweb="select"] {{
+  background: var(--input-bg) !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 10px !important;
+}}
+div[data-testid="stAppViewContainer"] .stTextInput [data-baseweb="input"]:focus-within,
+div[data-testid="stAppViewContainer"] .stTextInput input:focus,
+div[data-testid="stAppViewContainer"] .stSelectbox [data-baseweb="select"]:focus-within {{
+  border-color: var(--input-focus) !important;
+  box-shadow: 0 0 0 3px rgba(99,102,241,.25) !important;
+  outline: none !important;
+}}
+/* Íconos (chevron, etc.) */
+div[data-testid="stAppViewContainer"] .stSelectbox svg {{
+  color: var(--input-focus) !important;
+}}
 </style>
 """, unsafe_allow_html=True)
 
@@ -133,21 +182,45 @@ elif vista == "Generación de gráficos":
     with col_filtros:
         st.markdown('<div class="section-title">Configuración</div>', unsafe_allow_html=True)
 
+        # Fuente de datos
         st.markdown('<p style="font-weight:600;color:var(--accent);margin:0 0 var(--xs) 0;">Fuente de datos</p>', unsafe_allow_html=True)
-        fuente = st.selectbox("Fuente de datos", ["SIMEM", "Archivo Plano"], label_visibility="collapsed")
+        fuente = st.selectbox("Fuente de datos", ["SIMEM", "Archivo Plano"], label_visibility="collapsed", key="fuente_datos")
 
+        # Interacción condicional: SIMEM vs Archivo Plano
+        if fuente == "SIMEM":
+            c1, c2 = st.columns(2)
+            with c1:
+                st.markdown('<p style="font-weight:600;color:var(--accent);margin:0 0 var(--xs) 0;">Dataset ID</p>', unsafe_allow_html=True)
+                dataset_id = st.text_input("Dataset ID", placeholder="Ej: 12345-abc", label_visibility="collapsed", key="simem_dataset_id")
+            with c2:
+                st.markdown('<p style="font-weight:600;color:var(--accent);margin:0 0 var(--xs) 0;">Nombre de conjunto de datos</p>', unsafe_allow_html=True)
+                dataset_name = st.text_input("Nombre de conjunto de datos", placeholder="Ej: SIMEM - Producción", label_visibility="collapsed", key="simem_dataset_name")
+        else:
+            st.markdown('<p style="font-weight:600;color:var(--accent);margin:0 0 var(--xs) 0;">Cargar archivo</p>', unsafe_allow_html=True)
+            archivo_plano = st.file_uploader(
+                "Selecciona un archivo",
+                type=["csv", "xlsx", "xls", "parquet"],
+                accept_multiple_files=False,
+                label_visibility="collapsed",
+                help="Formatos permitidos: CSV, Excel (XLS/XLSX) o Parquet",
+                key="archivo_plano"
+            )
+
+        # Fechas
         st.markdown('<p style="font-weight:600;color:var(--accent);margin:0 0 var(--xs) 0;">Fecha Inicio</p>', unsafe_allow_html=True)
-        fecha_inicio  = st.date_input("fecha de consulta", label_visibility="collapsed")
+        fecha_inicio  = st.date_input("fecha de consulta", label_visibility="collapsed", key="fecha_inicio")
 
         st.markdown('<p style="font-weight:600;color:var(--accent);margin:0 0 var(--xs) 0;">Fecha Fin</p>', unsafe_allow_html=True)
-        fecha_fin  = st.date_input("fecha de consulta1", label_visibility="collapsed")
+        fecha_fin  = st.date_input("fecha de consulta1", label_visibility="collapsed", key="fecha_fin")
 
+        # Panel de filtro
         with st.container(border=True, key="filtro"):
             st.markdown("### Filtro")
+            opciones_filtro = ["Etapa", "Código Agente", "Actividad", "Código SIC Agente", "Versión"]
             seleccion = st.radio(
                 label="Selecciona un filtro",
-                options=["Etapa", "Código Agente", "Actividad", "Código SIC Agente", "Versión"],
-                index=["Etapa", "Código Agente", "Actividad", "Código SIC Agente", "Versión"].index(st.session_state["filtro_sel"]),
+                options=opciones_filtro,
+                index=opciones_filtro.index(st.session_state["filtro_sel"]),
                 label_visibility="collapsed",
                 horizontal=False,
                 key="filtro_radio",
@@ -156,8 +229,9 @@ elif vista == "Generación de gráficos":
             st.markdown(f"<div class='muted'>Opción actual: {st.session_state['filtro_sel']}</div>", unsafe_allow_html=True)
 
         st.markdown('<p style="font-weight:600;color:var(--accent);margin:0 0 var(--xs) 0;">Valor de filtro</p>', unsafe_allow_html=True)
-        valor_filtro = st.selectbox("Valor del filtro", ["001", "002", "003"], label_visibility="collapsed")
+        valor_filtro = st.selectbox("Valor del filtro", ["001", "002", "003"], label_visibility="collapsed", key="valor_filtro")
 
+        # Botones
         b1, b2, b3 = st.columns(3)
         with b1:
             if st.button("Reiniciar", use_container_width=True):
