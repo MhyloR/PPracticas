@@ -137,6 +137,29 @@ div[data-testid="stAppViewContainer"] .stSelectbox [data-baseweb="select"]:focus
 div[data-testid="stAppViewContainer"] .stSelectbox svg {{
   color: var(--input-focus) !important;
 }}
+
+/* ===== Placeholders más legibles en contenido principal ===== */
+div[data-testid="stAppViewContainer"] .stTextInput input::placeholder {{
+  color: var(--text-dark) !important;   /* usa tu variable existente */
+  opacity: 0.75 !important;             /* más contraste que el default */
+}}
+/* Compatibilidad cross-browser */
+div[data-testid="stAppViewContainer"] .stTextInput input::-webkit-input-placeholder {{
+  color: var(--text-dark) !important;
+  opacity: 0.75 !important;
+}}
+div[data-testid="stAppViewContainer"] .stTextInput input::-moz-placeholder {{
+  color: var(--text-dark) !important;
+  opacity: 0.75 !important;
+}}
+div[data-testid="stAppViewContainer"] .stTextInput input:-ms-input-placeholder {{
+  color: var(--text-dark) !important;
+  opacity: 0.75 !important;
+}}
+div[data-testid="stAppViewContainer"] .stTextInput input::-ms-input-placeholder {{
+  color: var(--text-dark) !important;
+  opacity: 0.75 !important;
+}}
 </style>
 """, unsafe_allow_html=True)
 
