@@ -76,25 +76,20 @@ def render():
                     st.selectbox(
                         "nombreConjuntoDatos",
                         options=display_name,
-                        index=(display_name.index(st.session_state["simem_dataset_name_select"])
-                               if st.session_state["simem_dataset_name_select"] in display_name else 0),
                         key="simem_dataset_name_select",
                         label_visibility="collapsed",
-                        help="Escribe para buscar por nombre o parte del ID",
-                        on_change=_sync_from_name, args=(by_name, to_display_by_id,)
+                        on_change=_sync_from_name,
+                        args=(by_name, to_display_by_id,)
                     )
 
-                if st.session_state["simem_dataset_id"] or st.session_state["simem_dataset_name"]:
-                    st.caption(f"Seleccionado: ID = {st.session_state['simem_dataset_id'] or '—'}  |  "
-                               f"Nombre = {st.session_state['simem_dataset_name'] or '—'}")
         else:
             st.markdown('<p style="font-weight:600;color:var(--accent);margin:0 0 var(--xs) 0;">Cargar archivo</p>', unsafe_allow_html=True)
             st.file_uploader(
                 "Selecciona un archivo",
-                type=["csv", "xlsx", "xls", "parquet"],
+                type=["csv", "json"],
                 accept_multiple_files=False,
                 label_visibility="collapsed",
-                help="Formatos permitidos: CSV, Excel (XLS/XLSX) o Parquet",
+                help="Formatos permitidos: CSV o Json",
                 key="archivo_plano"
             )
 
@@ -155,8 +150,8 @@ def render():
 
         if st.session_state["mostrar_grafica"]:
             data_fake = {
-                "Tomate": [random.randint(0, 10) for _ in range(5)],
-                "Cebolla": [random.randint(0, 10) for _ in range(5)],
+                "Tomate": [random.randint(0, 70) for _ in range(100)],
+                "Cebolla": [random.randint(0, 70) for _ in range(100)],
             }
             st.line_chart(data_fake, height=300)
 
