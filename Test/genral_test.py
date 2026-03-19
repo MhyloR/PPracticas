@@ -226,7 +226,7 @@ if vista == "Documentación":
     st.markdown("""
       <div class="card">
         <h3>Heading</h3>
-        <p>Aqui va a ir una cantidad de texto pero es mucha dejeme decirle</p>
+        <p>Aqui va a ir una cantidad de texto pero es que es mucha dejeme decirle</p>
       </div>
     """, unsafe_allow_html=True)
 
@@ -248,11 +248,11 @@ elif vista == "Generación de gráficos":
         if fuente == "SIMEM":
             c1, c2 = st.columns(2)
             with c1:
-                st.markdown('<p style="font-weight:600;color:var(--accent);margin:0 0 var(--xs) 0;">Dataset ID</p>', unsafe_allow_html=True)
-                dataset_id = st.text_input("Dataset ID", placeholder="Ej: 055A4D", label_visibility="collapsed", key="simem_dataset_id")
+                st.markdown('<p style="font-weight:600;color:var(--accent);margin:0 0 var(--xs) 0;">idDataset</p>', unsafe_allow_html=True)
+                dataset_id = st.text_input("idDataset", placeholder="Ej: 055A4D", label_visibility="collapsed", key="simem_dataset_id")
             with c2:
-                st.markdown('<p style="font-weight:600;color:var(--accent);margin:0 0 var(--xs) 0;">Nombre de conjunto de datos</p>', unsafe_allow_html=True)
-                dataset_name = st.text_input("Nombre de conjunto de datos", placeholder="Ej: Generación real", label_visibility="collapsed", key="simem_dataset_name")
+                st.markdown('<p style="font-weight:600;color:var(--accent);margin:0 0 var(--xs) 0;">nombreConjuntoDatos</p>', unsafe_allow_html=True)
+                dataset_name = st.text_input("nombreConjuntoDatos", placeholder="Ej: Generación real", label_visibility="collapsed", key="simem_dataset_name")
         else:
             st.markdown('<p style="font-weight:600;color:var(--accent);margin:0 0 var(--xs) 0;">Cargar archivo</p>', unsafe_allow_html=True)
             archivo_plano = st.file_uploader(
