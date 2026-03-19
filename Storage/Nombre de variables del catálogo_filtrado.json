@@ -1,0 +1,1506 @@
+[
+  {
+    "idDataset": "a704ee",
+    "nombreConjuntoDatos": "Datos soporte del proceso de liquidación por Código sic agente, Recurso, Tipo combustible, versión y mensual"
+  },
+  {
+    "idDataset": "d808d4",
+    "nombreConjuntoDatos": "Energía de Referencia para el Mercado Secundario"
+  },
+  {
+    "idDataset": "2106b8",
+    "nombreConjuntoDatos": "Precios y estadísticas de los contratos de convocatorias del SICEP entre agentes integrados verticalmente para el mercado regulado por comercializador"
+  },
+  {
+    "idDataset": "B1009C",
+    "nombreConjuntoDatos": "Compras en bolsa nacional en moneda"
+  },
+  {
+    "idDataset": "E4CE10",
+    "nombreConjuntoDatos": "Costo Servicios ASIC y CND"
+  },
+  {
+    "idDataset": "7AEE6F",
+    "nombreConjuntoDatos": "Nivel embalse reportado menos compromisos EVE embalsados por planta"
+  },
+  {
+    "idDataset": "F3A83B",
+    "nombreConjuntoDatos": "Estadísticas de contratos de Demanda Desconectable Voluntaria (DDV)"
+  },
+  {
+    "idDataset": "bf41fe",
+    "nombreConjuntoDatos": "Histórico Posición abierta por contrato II Open interest II"
+  },
+  {
+    "idDataset": "ae3f23",
+    "nombreConjuntoDatos": "Precios de escasez del Cargo por Confiabilidad"
+  },
+  {
+    "idDataset": "5106B9",
+    "nombreConjuntoDatos": "Declaración de respaldo horaria para cada planta y/o unidad"
+  },
+  {
+    "idDataset": "f62164",
+    "nombreConjuntoDatos": "Proyección de reserva caliente de corto plazo"
+  },
+  {
+    "idDataset": "8d3ccd",
+    "nombreConjuntoDatos": "Proyección de embalse agregado de corto plazo"
+  },
+  {
+    "idDataset": "06b8bc",
+    "nombreConjuntoDatos": "Proyección de balance energético de corto plazo"
+  },
+  {
+    "idDataset": "d31647",
+    "nombreConjuntoDatos": "Cantidades y precios en contratos de energía del Mercado Mayorista por comercializador"
+  },
+  {
+    "idDataset": "0fa2ac",
+    "nombreConjuntoDatos": "Datos soporte del proceso de Demandas por Recurso, versión y horaria"
+  },
+  {
+    "idDataset": "aa9f18",
+    "nombreConjuntoDatos": "Datos soporte del proceso de Demandas por Código sic agente, Recurso, Unidad, versión y horaria"
+  },
+  {
+    "idDataset": "b1c11e",
+    "nombreConjuntoDatos": "Datos soporte del proceso de liquidación por Código sic agente, versión y horaria"
+  },
+  {
+    "idDataset": "8d10e6",
+    "nombreConjuntoDatos": "Proyecciones de las cantidades y precios en contratos de energía del Mercado Mayorista por comercializador"
+  },
+  {
+    "idDataset": "0bfc9d",
+    "nombreConjuntoDatos": "Parámetros técnicos de las plantas de generación"
+  },
+  {
+    "idDataset": "270ba7",
+    "nombreConjuntoDatos": "Reservas de Energía Energético Largo Plazo"
+  },
+  {
+    "idDataset": "D387AB",
+    "nombreConjuntoDatos": "Bandera para pruebas de disponibilidad"
+  },
+  {
+    "idDataset": "568929",
+    "nombreConjuntoDatos": "Listado de Operadores de activos del Sistema Interconectado Nacional"
+  },
+  {
+    "idDataset": "a859bf",
+    "nombreConjuntoDatos": "Eventos de Frecuencia"
+  },
+  {
+    "idDataset": "f138b6",
+    "nombreConjuntoDatos": "Aportes Hídricos en Masa del Informe Diario"
+  },
+  {
+    "idDataset": "6f94cf",
+    "nombreConjuntoDatos": "Estadísticas de los pronósticos de energía horaria y demanda de energía atendida horaria por periodo y por mercado de comercialización"
+  },
+  {
+    "idDataset": "972263",
+    "nombreConjuntoDatos": "Listado de agentes registrados"
+  },
+  {
+    "idDataset": "f96857",
+    "nombreConjuntoDatos": "Energía horaria de los contadores"
+  },
+  {
+    "idDataset": "AB7D7F",
+    "nombreConjuntoDatos": "Generación Ideal por planta"
+  },
+  {
+    "idDataset": "054d02",
+    "nombreConjuntoDatos": "Montos de garantías y mecanismos alternativos para cubrir las transacciones en el mercado de energía mayorista agregados"
+  },
+  {
+    "idDataset": "0a0ec5",
+    "nombreConjuntoDatos": "Listado de mantenimientos"
+  },
+  {
+    "idDataset": "b38efc",
+    "nombreConjuntoDatos": "Energía Firme del Cargo por Confiabilidad verificada por el Centro Nacional de Despacho"
+  },
+  {
+    "idDataset": "0c5948",
+    "nombreConjuntoDatos": "Precios y estadísticas de los contratos de convocatorias del SICEP entre agentes integrados verticalmente para el mercado regulado"
+  },
+  {
+    "idDataset": "9c7ac5",
+    "nombreConjuntoDatos": "Informe Anual de Operadores de Red"
+  },
+  {
+    "idDataset": "03e35f",
+    "nombreConjuntoDatos": "Costo Marginal Redespacho"
+  },
+  {
+    "idDataset": "4A17B1",
+    "nombreConjuntoDatos": "Magnitud de generación de seguridad del país importador"
+  },
+  {
+    "idDataset": "86d025",
+    "nombreConjuntoDatos": "Montos de garantías para cubrir las transacciones en el mercado de energía mayorista agregados"
+  },
+  {
+    "idDataset": "74DE8E",
+    "nombreConjuntoDatos": "Tasa de cambio representativa del mercado"
+  },
+  {
+    "idDataset": "ea1c85",
+    "nombreConjuntoDatos": "Reserva asignada como Control Automático de Generación"
+  },
+  {
+    "idDataset": "37A508",
+    "nombreConjuntoDatos": "Panorama energético Corto Plazo Embalse"
+  },
+  {
+    "idDataset": "055A4D",
+    "nombreConjuntoDatos": "Generación real"
+  },
+  {
+    "idDataset": "48e773",
+    "nombreConjuntoDatos": "Precios futuros y estadísticas de los contratos de convocatorias del SICEP para el mercado regulado"
+  },
+  {
+    "idDataset": "FE1E73",
+    "nombreConjuntoDatos": "Inflexibilidad asignada en el proceso comercial"
+  },
+  {
+    "idDataset": "ebc2d1",
+    "nombreConjuntoDatos": "Condición del sistema según lo establecido en el Estatuto de Riesgo de Desabastecimiento"
+  },
+  {
+    "idDataset": "58a1b8",
+    "nombreConjuntoDatos": "Horas de indisponibilidad de las líneas de transmisión nacional y regional del SIN"
+  },
+  {
+    "idDataset": "7F18B1",
+    "nombreConjuntoDatos": "Listado de plantas de generación en pruebas"
+  },
+  {
+    "idDataset": "860c86",
+    "nombreConjuntoDatos": "Estudio Interconexión Colombia Ecuador"
+  },
+  {
+    "idDataset": "1E0AC7",
+    "nombreConjuntoDatos": "Compras en bolsa TIE en moneda"
+  },
+  {
+    "idDataset": "135D65",
+    "nombreConjuntoDatos": "Estad?sticas SIMEM"
+  },
+  {
+    "idDataset": "86d298",
+    "nombreConjuntoDatos": "Proyecciones de energía de los contratos no realizados a través del SICEP con destino al mercado regulado por comercializador y contrato"
+  },
+  {
+    "idDataset": "085460",
+    "nombreConjuntoDatos": "Datos soporte del proceso de Demandas por Código sic agente, Recurso, Tipo despacho Recurso, Estado, versión y diaria"
+  },
+  {
+    "idDataset": "5C7EAF",
+    "nombreConjuntoDatos": "Bandera de inflexibilidades asociadas generaciones de seguridad"
+  },
+  {
+    "idDataset": "682a0b",
+    "nombreConjuntoDatos": "Demanda Energético Largo Plazo"
+  },
+  {
+    "idDataset": "A8F4C0",
+    "nombreConjuntoDatos": "Costo promedio ponderado en contratos de largo plazo MC"
+  },
+  {
+    "idDataset": "c1b851",
+    "nombreConjuntoDatos": "Datos soporte del proceso de Demandas por Código sic agente, Mercado comercialización, Sistema transmisión, versión y horaria"
+  },
+  {
+    "idDataset": "EEDA4A",
+    "nombreConjuntoDatos": "Cantidad ventas en contratos del SICEP"
+  },
+  {
+    "idDataset": "BC6689",
+    "nombreConjuntoDatos": "Respuesta de la demanda verificada del sistema"
+  },
+  {
+    "idDataset": "7b756b",
+    "nombreConjuntoDatos": "Precios promedios horarios mensuales de contratos con UNR para el total del SIN"
+  },
+  {
+    "idDataset": "75f675",
+    "nombreConjuntoDatos": "Aportes Energético Largo Plazo"
+  },
+  {
+    "idDataset": "520A3F",
+    "nombreConjuntoDatos": "Responsabilidad comercial de AGC"
+  },
+  {
+    "idDataset": "E055B4",
+    "nombreConjuntoDatos": "Generación programada en el despacho"
+  },
+  {
+    "idDataset": "6781a0",
+    "nombreConjuntoDatos": "Generación Energético Mediano Plazo"
+  },
+  {
+    "idDataset": "A0CF2A",
+    "nombreConjuntoDatos": "Listado de Embalses que sirven al Sistema Interconectado Nacional"
+  },
+  {
+    "idDataset": "68300e",
+    "nombreConjuntoDatos": "Pronóstico del CND de demanda por mercado de comercialización"
+  },
+  {
+    "idDataset": "7e704d",
+    "nombreConjuntoDatos": "Meteorología local en Plantas Solares"
+  },
+  {
+    "idDataset": "206062",
+    "nombreConjuntoDatos": "Datos soporte del proceso de liquidación por Código sic agente, versión, horaria y mensual"
+  },
+  {
+    "idDataset": "32afa5",
+    "nombreConjuntoDatos": "Datos soporte del proceso de liquidación por descripción convocatoria, Código convocatoria subasta, Fecha asignación subasta, versión y mensual"
+  },
+  {
+    "idDataset": "b08986",
+    "nombreConjuntoDatos": "Registro de contratos de usuarios no regulados y reporte de facturación"
+  },
+  {
+    "idDataset": "24914F",
+    "nombreConjuntoDatos": "Versiones de factura para la liquidación mensual"
+  },
+  {
+    "idDataset": "c51127",
+    "nombreConjuntoDatos": "Reservas Hidráulicas Energía del Informe Diario de Operación"
+  },
+  {
+    "idDataset": "5fc353",
+    "nombreConjuntoDatos": "Datos soporte del proceso de liquidación por Recurso, Tipo combustible, versión y mensual"
+  },
+  {
+    "idDataset": "12c7fd",
+    "nombreConjuntoDatos": "Generación Programada Redespacho por Planta"
+  },
+  {
+    "idDataset": "670221",
+    "nombreConjuntoDatos": "Listado de unidades de generación"
+  },
+  {
+    "idDataset": "EDBDA0",
+    "nombreConjuntoDatos": "Representatividad de la energía transada"
+  },
+  {
+    "idDataset": "6a7864",
+    "nombreConjuntoDatos": "Vertimientos Energético Largo Plazo"
+  },
+  {
+    "idDataset": "43d851",
+    "nombreConjuntoDatos": "Cargos por uso del STN"
+  },
+  {
+    "idDataset": "4f2075",
+    "nombreConjuntoDatos": "Coordinación de mantenimientos generadores"
+  },
+  {
+    "idDataset": "178428",
+    "nombreConjuntoDatos": "Precios futuros y estadísticas de los contratos entre agentes"
+  },
+  {
+    "idDataset": "7E5EA7",
+    "nombreConjuntoDatos": "Ajuste Transacciones TIE"
+  },
+  {
+    "idDataset": "710e77",
+    "nombreConjuntoDatos": "Estadísticas anuales de las convocatorias del SICEP para el mercado regulado"
+  },
+  {
+    "idDataset": "51fea2",
+    "nombreConjuntoDatos": "Bandera de pruebas de disponibilidad programadas en la operación por el Centro Nacional de Despacho"
+  },
+  {
+    "idDataset": "60fed4",
+    "nombreConjuntoDatos": "Precios futuros y estadísticas de los contratos entre agentes por comercializador y generador"
+  },
+  {
+    "idDataset": "b1189f",
+    "nombreConjuntoDatos": "Precio de oferta de la planta en el proceso del despacho ideal, en COP/kWh"
+  },
+  {
+    "idDataset": "7E4EE4",
+    "nombreConjuntoDatos": "Estadísticas de monto de indisponibilidad de las líneas de transmisión nacional y regional del SIN"
+  },
+  {
+    "idDataset": "8F2AFC",
+    "nombreConjuntoDatos": "Reconciliación negativa para plantas que no realizan AGC"
+  },
+  {
+    "idDataset": "FADED0",
+    "nombreConjuntoDatos": "Capacidad efectiva neta por planta en potencia"
+  },
+  {
+    "idDataset": "1445AC",
+    "nombreConjuntoDatos": "Caudal Descargado por Tipo de Descarga"
+  },
+  {
+    "idDataset": "843497",
+    "nombreConjuntoDatos": "Reservas Hidráulicas en Porcentaje"
+  },
+  {
+    "idDataset": "f21bd1",
+    "nombreConjuntoDatos": "Cantidades horarias de energía por comercializador de contratos adjudicados en subastas del Ministerio (MME)"
+  },
+  {
+    "idDataset": "705468",
+    "nombreConjuntoDatos": "Estadísticas horarias de precios por comercializador de los contratos adjudicados en subastas del Ministerio (MME)"
+  },
+  {
+    "idDataset": "CB2410",
+    "nombreConjuntoDatos": "Costos de operación, mantenimiento y otros costos variables de generadores térmicos"
+  },
+  {
+    "idDataset": "ac9492",
+    "nombreConjuntoDatos": "Precios futuros horarios mensuales de contratos con UNR para el total del SIN"
+  },
+  {
+    "idDataset": "18F0B8",
+    "nombreConjuntoDatos": "Generación programada en el redespacho"
+  },
+  {
+    "idDataset": "3F3687",
+    "nombreConjuntoDatos": "Datos soporte del proceso de liquidación por versión y horaria"
+  },
+  {
+    "idDataset": "f96857",
+    "nombreConjuntoDatos": "Datos soporte del proceso de Demandas por Código Sic Frontera, Submercado, Tipo enlace, versión y horaria"
+  },
+  {
+    "idDataset": "96DDFE",
+    "nombreConjuntoDatos": "Relación índice platts US gulf coast residual fuel"
+  },
+  {
+    "idDataset": "B0E933",
+    "nombreConjuntoDatos": "Reservas Hidráulicas en Energía"
+  },
+  {
+    "idDataset": "39726d",
+    "nombreConjuntoDatos": "Bandera de parada de plantas"
+  },
+  {
+    "idDataset": "85B998",
+    "nombreConjuntoDatos": "Desviación diaria de obligación de energía firme positiva"
+  },
+  {
+    "idDataset": "1eee63",
+    "nombreConjuntoDatos": "Aportes Energético Mediano Plazo"
+  },
+  {
+    "idDataset": "013220",
+    "nombreConjuntoDatos": "Precios y estadísticas mensuales de contratos entre agentes por generador"
+  },
+  {
+    "idDataset": "21a98c",
+    "nombreConjuntoDatos": "Pruebas de Disponibilidad para Cargo por Confiabilidad"
+  },
+  {
+    "idDataset": "AECA28",
+    "nombreConjuntoDatos": "Vertimientos hídricos"
+  },
+  {
+    "idDataset": "15df39",
+    "nombreConjuntoDatos": "Proyecciones de energía de los contratos no realizados a través del SICEP con destino al mercado regulado por comercializador"
+  },
+  {
+    "idDataset": "39db4e",
+    "nombreConjuntoDatos": "Disponibilidad asociada con arranque utilizando tecnología térmica a gas ciclo carbón"
+  },
+  {
+    "idDataset": "a38a5c",
+    "nombreConjuntoDatos": "Agentes MEM inscritos en el mecanismo Derivex"
+  },
+  {
+    "idDataset": "61ccc8",
+    "nombreConjuntoDatos": "Precios horarios y estadísticas de los contratos entre agentes por generador"
+  },
+  {
+    "idDataset": "c10ec7",
+    "nombreConjuntoDatos": "Cobertura de la demanda de contratos realizados fuera del SICEP"
+  },
+  {
+    "idDataset": "8d3f47",
+    "nombreConjuntoDatos": "Generación ideal flexible para demanda no domestica Venezuela "
+  },
+  {
+    "idDataset": "305a36",
+    "nombreConjuntoDatos": "Energía promedio de los contratos de convocatorias del SICEP con destino al mercado regulado del Sistema Interconectado Nacional"
+  },
+  {
+    "idDataset": "760616",
+    "nombreConjuntoDatos": "Déficit Energético Largo Plazo"
+  },
+  {
+    "idDataset": "48cd87",
+    "nombreConjuntoDatos": "Datos soporte del proceso de Demandas por Código sic agente, Código sic frontera, Tipo frontera, versión y horaria"
+  },
+  {
+    "idDataset": "d91840",
+    "nombreConjuntoDatos": "Pronóstico oficial de demanda por Área operativa"
+  },
+  {
+    "idDataset": "315976",
+    "nombreConjuntoDatos": "Limitación de suministros a usuarios finales según la Res. CREG 116 de 1998"
+  },
+  {
+    "idDataset": "9e2844",
+    "nombreConjuntoDatos": "Precios horarios y estadísticas de los contratos entre agentes por comercializador"
+  },
+  {
+    "idDataset": "135c10",
+    "nombreConjuntoDatos": "Valores del Cargo por Confiabilidad"
+  },
+  {
+    "idDataset": "658DAE",
+    "nombreConjuntoDatos": "Nivel de Probabilidad de Vertimiento"
+  },
+  {
+    "idDataset": "71a7b9",
+    "nombreConjuntoDatos": "Niveles Mínimos Operativos de Embalses de invierno"
+  },
+  {
+    "idDataset": "1d3ef8",
+    "nombreConjuntoDatos": "Reservas Hidráulicas en Porcentaje del Informe Diario de Operación"
+  },
+  {
+    "idDataset": "62649f",
+    "nombreConjuntoDatos": "Recomendaciones Eléctricas consideradas en el Despacho Económico"
+  },
+  {
+    "idDataset": "ECA1CC",
+    "nombreConjuntoDatos": "Potencia asociada con la holgura"
+  },
+  {
+    "idDataset": "99c2e8",
+    "nombreConjuntoDatos": "Costo del uso de los activos de transmisión"
+  },
+  {
+    "idDataset": "490BDB",
+    "nombreConjuntoDatos": "Tipo de combustible utilizado para calculo de costos"
+  },
+  {
+    "idDataset": "531ba3",
+    "nombreConjuntoDatos": "Informe anual de auditoría de costos de combustible para el cálculo del precio marginal de escasez"
+  },
+  {
+    "idDataset": "d0d746",
+    "nombreConjuntoDatos": "Pérdidas Energía Asignadas Agente"
+  },
+  {
+    "idDataset": "42EDC9",
+    "nombreConjuntoDatos": "Magnitud energía en bolsa nacional a cargo"
+  },
+  {
+    "idDataset": "fa4671",
+    "nombreConjuntoDatos": "Datos soporte del proceso de Contratos por Recurso, versión y diaria"
+  },
+  {
+    "idDataset": "11093A",
+    "nombreConjuntoDatos": "Calce u operaciones de las órdenes de oferta en Convocatorias de Participación en Subasta de Cierre"
+  },
+  {
+    "idDataset": "86d9c6",
+    "nombreConjuntoDatos": "Variables de Ajuste por Energía Vendida Embalsada (EVE)"
+  },
+  {
+    "idDataset": "9605b0",
+    "nombreConjuntoDatos": "Reservas Hidráulicas en Masa del Informe Diario de Operación"
+  },
+  {
+    "idDataset": "97C342",
+    "nombreConjuntoDatos": "VersionConfiguracionTablaSIMEM"
+  },
+  {
+    "idDataset": "bd583d",
+    "nombreConjuntoDatos": "Niveles Mínimos Operativos de Embalses de verano"
+  },
+  {
+    "idDataset": "d55202",
+    "nombreConjuntoDatos": "Demanda comercial"
+  },
+  {
+    "idDataset": "f2ba18",
+    "nombreConjuntoDatos": "Costo Marginal Promedio del Redespacho del Informe Diario de Operación"
+  },
+  {
+    "idDataset": "06bb49",
+    "nombreConjuntoDatos": "Energía promedio mensual de contratos con UNR para el total del SIN"
+  },
+  {
+    "idDataset": "44c3e3",
+    "nombreConjuntoDatos": "Recomendaciones Eléctricas consideradas en Tiempo Real"
+  },
+  {
+    "idDataset": "8FFA6D",
+    "nombreConjuntoDatos": "Inflexibilidades no asociadas con generación de seguridad"
+  },
+  {
+    "idDataset": "03ba47",
+    "nombreConjuntoDatos": "Máximo precio ofertado"
+  },
+  {
+    "idDataset": "1ff257",
+    "nombreConjuntoDatos": "Servicios LAC Moneda"
+  },
+  {
+    "idDataset": "5f4e97",
+    "nombreConjuntoDatos": "Precios promedios horarios mensuales por comercializador de contratos con UNR para el total del SIN"
+  },
+  {
+    "idDataset": "306c67",
+    "nombreConjuntoDatos": "Asignaciones de OEF por planta"
+  },
+  {
+    "idDataset": "5f246a",
+    "nombreConjuntoDatos": "Precios horarios y estadísticas de los contratos entre agentes"
+  },
+  {
+    "idDataset": "300D5C",
+    "nombreConjuntoDatos": "Costo de operación y mantenimiento para el precio de escasez"
+  },
+  {
+    "idDataset": "53c5f4",
+    "nombreConjuntoDatos": "Montos por indisponibilidad de las líneas de transmisión nacional y regional del SIN en COP"
+  },
+  {
+    "idDataset": "AB052F",
+    "nombreConjuntoDatos": "Número de intentos para cumplir pruebas de disponiblidad"
+  },
+  {
+    "idDataset": "f73ff2",
+    "nombreConjuntoDatos": "Cantidad de fronteras de UNR por nivel de tensión"
+  },
+  {
+    "idDataset": "7a30a3",
+    "nombreConjuntoDatos": "Versiones de factura para la liquidación diaria"
+  },
+  {
+    "idDataset": "4f9fe7",
+    "nombreConjuntoDatos": "Precios horarios futuros y estadísticas de los contratos entre agentes"
+  },
+  {
+    "idDataset": "6A36D0",
+    "nombreConjuntoDatos": "Acumulado anual de los calce u operaciones de las órdenes de oferta en Convocatorias"
+  },
+  {
+    "idDataset": "e5be73",
+    "nombreConjuntoDatos": "Precios horarios y estadísticas de los contratos de convocatorias del SICEP para el mercado regulado"
+  },
+  {
+    "idDataset": "6d9c07",
+    "nombreConjuntoDatos": "Proyecciones de precios de los contratos no realizados a través del SICEP con destino al mercado regulado por comercializador y contrato"
+  },
+  {
+    "idDataset": "842296",
+    "nombreConjuntoDatos": "Energía calculada para plantas hidráulicas por reconciliación positiva asociada a la exportación hacia Ecuador"
+  },
+  {
+    "idDataset": "14fabb",
+    "nombreConjuntoDatos": "Demanda real"
+  },
+  {
+    "idDataset": "8750f9",
+    "nombreConjuntoDatos": "Generación Energético Largo Plazo"
+  },
+  {
+    "idDataset": "6e0197",
+    "nombreConjuntoDatos": "Recomendaciones Eléctricas de Corto Plazo"
+  },
+  {
+    "idDataset": "FB23CF",
+    "nombreConjuntoDatos": "Valor contratos convocatorias públicas SICEP"
+  },
+  {
+    "idDataset": "da2a88",
+    "nombreConjuntoDatos": "Cobertura de la demanda de UNR"
+  },
+  {
+    "idDataset": "3451bf",
+    "nombreConjuntoDatos": "Precio de Oferta Declarado"
+  },
+  {
+    "idDataset": "f0be2a",
+    "nombreConjuntoDatos": "Precios y estadísticas mensuales de contratos de convocatorias del SICEP para el mercado regulado por comercializador"
+  },
+  {
+    "idDataset": "42f98c",
+    "nombreConjuntoDatos": "Meteorología local en Plantas Eólicas"
+  },
+  {
+    "idDataset": "ec8596",
+    "nombreConjuntoDatos": "Aportes Hídricos en Porcentaje del Informe Diario"
+  },
+  {
+    "idDataset": "fad372",
+    "nombreConjuntoDatos": "Cantidad de fronteras de UNR por nivel de consumo"
+  },
+  {
+    "idDataset": "9e9ee7",
+    "nombreConjuntoDatos": "Pronóstico de demanda de energía y demanda atendida por mercado de comercialización"
+  },
+  {
+    "idDataset": "DE416B",
+    "nombreConjuntoDatos": "Calce u operaciones de las órdenes de demanda en Convocatorias de Participación en Subasta de Cierre"
+  },
+  {
+    "idDataset": "FEC25B",
+    "nombreConjuntoDatos": "Magnitud compras transacciones en bolsa en energía"
+  },
+  {
+    "idDataset": "629B6D",
+    "nombreConjuntoDatos": "Oportunidad en la entrega de información por parte de los agentes de contratos largo plazo"
+  },
+  {
+    "idDataset": "6bac48",
+    "nombreConjuntoDatos": "Precios y estadísticas de los contratos entre agentes integrados verticalmente para el mercado no regulado"
+  },
+  {
+    "idDataset": "9795ba",
+    "nombreConjuntoDatos": "Datos soporte del proceso de liquidación por Tipo combustible, versión y mensual"
+  },
+  {
+    "idDataset": "7538fd",
+    "nombreConjuntoDatos": "Parámetros técnicos de las líneas de transmisión"
+  },
+  {
+    "idDataset": "FE2899",
+    "nombreConjuntoDatos": "Banderas de pruebas por unidad"
+  },
+  {
+    "idDataset": "a6dcc1",
+    "nombreConjuntoDatos": "Precios futuros mensuales de contratos con UNR por mercado de comercialización"
+  },
+  {
+    "idDataset": "9CBA0C",
+    "nombreConjuntoDatos": "Disponibilidad horaria declarada total que respalda las OEF"
+  },
+  {
+    "idDataset": "0220e0",
+    "nombreConjuntoDatos": "Datos soporte del proceso de liquidación por Código sic agente, versión y mensual"
+  },
+  {
+    "idDataset": "709b84",
+    "nombreConjuntoDatos": "Precio de Transacciones en Bolsa"
+  },
+  {
+    "idDataset": "10F2C9",
+    "nombreConjuntoDatos": "Listado de Subáreas Operativas del Sistema de Interconectado Nacional"
+  },
+  {
+    "idDataset": "22e6e3",
+    "nombreConjuntoDatos": "Pérdidas de energía"
+  },
+  {
+    "idDataset": "d943d5",
+    "nombreConjuntoDatos": "Proyecciones de precios de los contratos no realizados a través del SICEP con destino al mercado regulado por comercializador"
+  },
+  {
+    "idDataset": "69736c",
+    "nombreConjuntoDatos": "Precios y estadísticas de los contratos de convocatorias del SICEP para el mercado regulado, por año de suscripción"
+  },
+  {
+    "idDataset": "6D6E23",
+    "nombreConjuntoDatos": "Ventas en bolsa internacional en moneda"
+  },
+  {
+    "idDataset": "cebe60",
+    "nombreConjuntoDatos": "Precios y estadísticas mensuales de los contratos de convocatorias del SICEP para el mercado regulado"
+  },
+  {
+    "idDataset": "d528cb",
+    "nombreConjuntoDatos": "Precios horarios y estadísticas de los contratos de convocatorias del SICEP para el mercado regulado por comercializador"
+  },
+  {
+    "idDataset": "7E9CBB",
+    "nombreConjuntoDatos": "Capacidad de respaldo para operaciones en el Mercado Mayorista de Energía"
+  },
+  {
+    "idDataset": "E93F85",
+    "nombreConjuntoDatos": "Magnitud energía en bolsa internacional a cargo"
+  },
+  {
+    "idDataset": "2bff14",
+    "nombreConjuntoDatos": "Aportes Hídricos en Energía del Informe Diario de Operación"
+  },
+  {
+    "idDataset": "fbfafd",
+    "nombreConjuntoDatos": "Precios y estadísticas mensuales de contratos entre agentes por comercializador"
+  },
+  {
+    "idDataset": "562E3A",
+    "nombreConjuntoDatos": "Generación programada incluyendo autorización a desvío"
+  },
+  {
+    "idDataset": "693AC9",
+    "nombreConjuntoDatos": "Desviación diaria de obligación de energía firme negativa"
+  },
+  {
+    "idDataset": "13FC3A",
+    "nombreConjuntoDatos": "Calculo Frecuencia Interrupción Servidores"
+  },
+  {
+    "idDataset": "88997D",
+    "nombreConjuntoDatos": "Magnitud de desviación"
+  },
+  {
+    "idDataset": "379022",
+    "nombreConjuntoDatos": "Bandera de arranque Planta térmica para el Despacho Ideal"
+  },
+  {
+    "idDataset": "138ED1",
+    "nombreConjuntoDatos": "Reservas Hidráulicas en Masa"
+  },
+  {
+    "idDataset": "40d2d3",
+    "nombreConjuntoDatos": "Estadísticas horarias de precios de los contratos adjudicados en subastas del Ministerio (MME)"
+  },
+  {
+    "idDataset": "4eb7e3",
+    "nombreConjuntoDatos": "Datos soporte del proceso de liquidación por Código sic agente, Recurso, versión y diaria"
+  },
+  {
+    "idDataset": "509acf",
+    "nombreConjuntoDatos": "Reservas en Porcentaje Energético Mediano Plazo"
+  },
+  {
+    "idDataset": "43D616",
+    "nombreConjuntoDatos": "Precio de escasez ponderado"
+  },
+  {
+    "idDataset": "68a95b",
+    "nombreConjuntoDatos": "Estadísticas de precios de los contratos adjudicados en subastas del Ministerio (MME)"
+  },
+  {
+    "idDataset": "b9f2ec",
+    "nombreConjuntoDatos": "Información de Transferencias Internacionales"
+  },
+  {
+    "idDataset": "EC6945",
+    "nombreConjuntoDatos": "Precio de bolsa horario"
+  },
+  {
+    "idDataset": "30a827",
+    "nombreConjuntoDatos": "Precios futuros mensuales de contratos con UNR para el total del SIN"
+  },
+  {
+    "idDataset": "7DACE2",
+    "nombreConjuntoDatos": "Estadísticas de Horas de indisponibilidad de las líneas de transmisión nacional y regional del SIN"
+  },
+  {
+    "idDataset": "d44fe9",
+    "nombreConjuntoDatos": "Renta de congestión con destinación al FOES"
+  },
+  {
+    "idDataset": "029125",
+    "nombreConjuntoDatos": "Delta de generación programada"
+  },
+  {
+    "idDataset": "f2081a",
+    "nombreConjuntoDatos": "Datos soporte del proceso de liquidación por versión y mensual"
+  },
+  {
+    "idDataset": "11364C",
+    "nombreConjuntoDatos": "Magnitud ventas en bolsa internacional en energía"
+  },
+  {
+    "idDataset": "3C77AF",
+    "nombreConjuntoDatos": "Eventos de Demanda No Atendida"
+  },
+  {
+    "idDataset": "c41fe8",
+    "nombreConjuntoDatos": "Datos soporte del proceso de liquidación por Código sic agente, Recurso, versión y horaria"
+  },
+  {
+    "idDataset": "F37316",
+    "nombreConjuntoDatos": "Magnitud de reconciliación positiva para plantas que prestan servicio de AGC"
+  },
+  {
+    "idDataset": "29f060",
+    "nombreConjuntoDatos": "Costo marginal del Despacho Económico"
+  },
+  {
+    "idDataset": "2d5afe",
+    "nombreConjuntoDatos": "Datos soporte del proceso de liquidación por Recurso, versión y horaria"
+  },
+  {
+    "idDataset": "81fd6b",
+    "nombreConjuntoDatos": "Actuación del Esquema de Deslastre Automático de Carga (EDAC)"
+  },
+  {
+    "idDataset": "7BC5F5",
+    "nombreConjuntoDatos": "Costo unitario responsabilidad comercial de AGC"
+  },
+  {
+    "idDataset": "2a301d",
+    "nombreConjuntoDatos": "Datos soporte del proceso de Despacho Ideal por Recurso, versión y horaria"
+  },
+  {
+    "idDataset": "81D183",
+    "nombreConjuntoDatos": "Valor compras transacciones bolsa en moneda"
+  },
+  {
+    "idDataset": "bb4a0a",
+    "nombreConjuntoDatos": "Precios y estadísticas mensuales de contratos entre agentes"
+  },
+  {
+    "idDataset": "F28855",
+    "nombreConjuntoDatos": "Histórico de eventos en Unidades de Generación"
+  },
+  {
+    "idDataset": "b1ccc4",
+    "nombreConjuntoDatos": "Precios promedios mensuales de contratos con UNR por mercado de comercialización"
+  },
+  {
+    "idDataset": "126C20",
+    "nombreConjuntoDatos": "Disponibilidad horaria de respaldo de OEF ajustada"
+  },
+  {
+    "idDataset": "8E7F3C",
+    "nombreConjuntoDatos": "Generación ideal nacional por planta"
+  },
+  {
+    "idDataset": "560280",
+    "nombreConjuntoDatos": "Precios horarios futuros y estadísticas de los contratos de convocatorias del SICEP para el mercado regulado por comercializador"
+  },
+  {
+    "idDataset": "0bf1d9",
+    "nombreConjuntoDatos": "Consumo de Combustible Energético Largo Plazo"
+  },
+  {
+    "idDataset": "054b23",
+    "nombreConjuntoDatos": "Cargo de nivel de tensión 4"
+  },
+  {
+    "idDataset": "e427a2",
+    "nombreConjuntoDatos": "Precio oferta arranque y parada por unidad para el combustible USD"
+  },
+  {
+    "idDataset": "00C31F",
+    "nombreConjuntoDatos": "Restricciones a cargo de la demanda"
+  },
+  {
+    "idDataset": "b15ed2",
+    "nombreConjuntoDatos": "Costo unitario promedio diario de reconciliación positiva"
+  },
+  {
+    "idDataset": "ab3d66",
+    "nombreConjuntoDatos": "Datos soporte del proceso de Contratos por versión y horaria"
+  },
+  {
+    "idDataset": "ef0522",
+    "nombreConjuntoDatos": "Costos Marginales Energético Largo Plazo"
+  },
+  {
+    "idDataset": "f09333",
+    "nombreConjuntoDatos": "Datos soporte del proceso de liquidación por Código sic agente, Recurso, Unidad, versión y horaria"
+  },
+  {
+    "idDataset": "C8381F",
+    "nombreConjuntoDatos": "Cantidad de compra despachada en contratos de largo plazo en kWh"
+  },
+  {
+    "idDataset": "B8EDC1",
+    "nombreConjuntoDatos": "Tarifa de aportes ley 99 de 1993 para plantas térmicas e hidráulicas"
+  },
+  {
+    "idDataset": "7580FA",
+    "nombreConjuntoDatos": "Participación en Convocatorias de Participación en Subasta de Cierre de agentes registrados"
+  },
+  {
+    "idDataset": "3a76fa",
+    "nombreConjuntoDatos": "Cargos por uso bruto "
+  },
+  {
+    "idDataset": "7c8129",
+    "nombreConjuntoDatos": "Datos soporte del proceso de liquidación por versión y diaria"
+  },
+  {
+    "idDataset": "E14D70",
+    "nombreConjuntoDatos": "Magnitud ventas en bolsa nacional en energía"
+  },
+  {
+    "idDataset": "ff027b",
+    "nombreConjuntoDatos": "Despacho programado recursos de generación"
+  },
+  {
+    "idDataset": "7f16cb",
+    "nombreConjuntoDatos": "Información de Transferencias Internacionales"
+  },
+  {
+    "idDataset": "385613",
+    "nombreConjuntoDatos": "Resultados de las Subastas de Reconfiguración"
+  },
+  {
+    "idDataset": "ea45fe",
+    "nombreConjuntoDatos": "Precios y estadísticas de los contratos entre agentes, agrupados por año de suscripción"
+  },
+  {
+    "idDataset": "C35A63",
+    "nombreConjuntoDatos": "Precio de oferta en el nodo frontera para exportación"
+  },
+  {
+    "idDataset": "6B9E0C",
+    "nombreConjuntoDatos": "Generación ideal internacional Venezuela por recurso planta"
+  },
+  {
+    "idDataset": "7a07ac",
+    "nombreConjuntoDatos": "Eventos en unidades de Generación"
+  },
+  {
+    "idDataset": "58E055",
+    "nombreConjuntoDatos": "Promedio aritmético anual acumulado de la representatividad de participantes del MEM"
+  },
+  {
+    "idDataset": "30E8EC",
+    "nombreConjuntoDatos": "Magnitud ventas transacciones en bolsa en energía"
+  },
+  {
+    "idDataset": "64eb3f",
+    "nombreConjuntoDatos": "Disponibilidad Real de las Unidades de Generación del Sistema"
+  },
+  {
+    "idDataset": "2926f9",
+    "nombreConjuntoDatos": "Cargos por uso únicos por nivel de tensión (DtUN)"
+  },
+  {
+    "idDataset": "860bc8",
+    "nombreConjuntoDatos": "Duración promedio de los contratos producto de convocatorias del SICEP para el mercado regulado"
+  },
+  {
+    "idDataset": "b84962",
+    "nombreConjuntoDatos": "Disponibilidad asociada con arranque utilizando tecnología térmica gas vapor"
+  },
+  {
+    "idDataset": "eb6857",
+    "nombreConjuntoDatos": "Reservas de Energía Energético Mediano Plazo"
+  },
+  {
+    "idDataset": "dac3c5",
+    "nombreConjuntoDatos": "Precios futuros y estadísticas de los contratos de convocatorias del SICEP para el mercado regulado por comercializador"
+  },
+  {
+    "idDataset": "82a4d5",
+    "nombreConjuntoDatos": "Cargo por concepto de remuneración de los planes de pérdidas (CPROG)"
+  },
+  {
+    "idDataset": "d6cf36",
+    "nombreConjuntoDatos": "Cargos por uso en el SDL"
+  },
+  {
+    "idDataset": "42d664",
+    "nombreConjuntoDatos": "Cantidades de energía por comercializador de contratos adjudicados en subastas del Ministerio (MME)"
+  },
+  {
+    "idDataset": "d4049a",
+    "nombreConjuntoDatos": "Importaciones Netas Energético Largo Plazo"
+  },
+  {
+    "idDataset": "b94b3c",
+    "nombreConjuntoDatos": "Limitación de suministro en bolsa según la Res. CREG 001 de 2003"
+  },
+  {
+    "idDataset": "9a1b87",
+    "nombreConjuntoDatos": "Insumos para el Precio Marginal de Escasez"
+  },
+  {
+    "idDataset": "ff15e5",
+    "nombreConjuntoDatos": "Disponibilidad asociada con arranque utilizando tecnología térmica a gas ciclo sting"
+  },
+  {
+    "idDataset": "a016ba",
+    "nombreConjuntoDatos": "Pronóstico del CND de demanda por Área operativa"
+  },
+  {
+    "idDataset": "f9d42a",
+    "nombreConjuntoDatos": "Precios horarios futuros y estadísticas de los contratos entre agentes por comercializador y generador"
+  },
+  {
+    "idDataset": "861936",
+    "nombreConjuntoDatos": "Generaciones candidatas a ser inflexibles"
+  },
+  {
+    "idDataset": "547a91",
+    "nombreConjuntoDatos": "Fondo de energía social (FOES)"
+  },
+  {
+    "idDataset": "09a70a",
+    "nombreConjuntoDatos": "Indices VERE y VEREC Energético Largo Plazo"
+  },
+  {
+    "idDataset": "1237df",
+    "nombreConjuntoDatos": "Bandera de arranque de plantas"
+  },
+  {
+    "idDataset": "965765",
+    "nombreConjuntoDatos": "Costo unitario SIMEM y SICEP"
+  },
+  {
+    "idDataset": "ea754c",
+    "nombreConjuntoDatos": "Datos soporte del proceso de Demandas por versión y diaria"
+  },
+  {
+    "idDataset": "BD26DC",
+    "nombreConjuntoDatos": "Nivel de embalse declarado por el agente diariamente"
+  },
+  {
+    "idDataset": "B53464",
+    "nombreConjuntoDatos": "Reconciliación negativa para planta que realiza AGC"
+  },
+  {
+    "idDataset": "51407A",
+    "nombreConjuntoDatos": "Informe semestral de planeamiento operativo eléctrico de largo plazo (IPOELP) --Deprecated--"
+  },
+  {
+    "idDataset": "5f8082",
+    "nombreConjuntoDatos": "Precios promedios mensuales de contratos con UNR para el total del SIN"
+  },
+  {
+    "idDataset": "0E4A36",
+    "nombreConjuntoDatos": "Promedio aritmético anual acumulado de la representatividad de la energía transada"
+  },
+  {
+    "idDataset": "da2c83",
+    "nombreConjuntoDatos": "Estadísticas de precios por comercializador de los contratos adjudicados en subastas del Ministerio (MME)"
+  },
+  {
+    "idDataset": "9e491b",
+    "nombreConjuntoDatos": "Datos soporte del proceso de Contratos por Código sic agente, Recurso, versión y horaria"
+  },
+  {
+    "idDataset": "F99E13",
+    "nombreConjuntoDatos": "Listado de Subestaciones del STN y el STR"
+  },
+  {
+    "idDataset": "9a387a",
+    "nombreConjuntoDatos": "Porcentaje estimado de cobertura con contratos de convocatorias del SICEP para el mercado regulado"
+  },
+  {
+    "idDataset": "caeff0",
+    "nombreConjuntoDatos": "Informe trimestral de planeamiento operativo eléctrico de mediano plazo (IPOEMP) --Deprecated--"
+  },
+  {
+    "idDataset": "34FFDA",
+    "nombreConjuntoDatos": "Aportes Hídricos en Porcentaje"
+  },
+  {
+    "idDataset": "90b78a",
+    "nombreConjuntoDatos": "Porcentaje Estimado de cobertura con contratos entre agentes"
+  },
+  {
+    "idDataset": "fe1a54",
+    "nombreConjuntoDatos": "Estudio Esquema de Desconexión Automático de Carga EDAC"
+  },
+  {
+    "idDataset": "d760bb",
+    "nombreConjuntoDatos": "Precios y estadísticas de los contratos entre agentes, por año de suscripción y por comercializador"
+  },
+  {
+    "idDataset": "8b732d",
+    "nombreConjuntoDatos": "Duración promedio de los contratos entre agentes"
+  },
+  {
+    "idDataset": "aecac4",
+    "nombreConjuntoDatos": "Costo Equivalente Real de Energía (CERE)"
+  },
+  {
+    "idDataset": "A88E47",
+    "nombreConjuntoDatos": "Ventas en bolsa TIE en moneda"
+  },
+  {
+    "idDataset": "cf0167",
+    "nombreConjuntoDatos": "Costo Restricciones Asignadas al Agente"
+  },
+  {
+    "idDataset": "521384",
+    "nombreConjuntoDatos": "Montos de garantías para cubrir las transacciones en el mercado de energía mayorista"
+  },
+  {
+    "idDataset": "02B289",
+    "nombreConjuntoDatos": "Aportes Hídricos en Masa"
+  },
+  {
+    "idDataset": "6dc639",
+    "nombreConjuntoDatos": "Datos soporte del proceso de liquidación por Recurso, versión y diaria"
+  },
+  {
+    "idDataset": "086d86",
+    "nombreConjuntoDatos": "Energía promedio de los contratos entre agentes del Sistema Interconectado Nacional"
+  },
+  {
+    "idDataset": "b7917a",
+    "nombreConjuntoDatos": "Datos soporte del proceso de Demandas por Código sic agente, versión y horaria"
+  },
+  {
+    "idDataset": "cc59b1",
+    "nombreConjuntoDatos": "Listado de series hidrológicas"
+  },
+  {
+    "idDataset": "9FDD00",
+    "nombreConjuntoDatos": "Valor a pagar por la no prestación del servicio de regulación primaria de frecuencia"
+  },
+  {
+    "idDataset": "897043",
+    "nombreConjuntoDatos": "Holgura horaria superior e inferior"
+  },
+  {
+    "idDataset": "1cdd5f",
+    "nombreConjuntoDatos": "Precios y estadísticas de los contratos entre agentes integrados verticalmente por generador"
+  },
+  {
+    "idDataset": "48C79B",
+    "nombreConjuntoDatos": "Precios de escasez promedio ponderado por agente"
+  },
+  {
+    "idDataset": "e71658",
+    "nombreConjuntoDatos": "Montos de garantías y mecanismos alternativos para cubrir las transacciones en el mercado de energía mayorista"
+  },
+  {
+    "idDataset": "94F4A5",
+    "nombreConjuntoDatos": "Causas Generación Seguridad"
+  },
+  {
+    "idDataset": "70E9A6",
+    "nombreConjuntoDatos": "Deltas incremento nacional e internacional"
+  },
+  {
+    "idDataset": "909809",
+    "nombreConjuntoDatos": "Precio de Oferta de Arranque y Parada por recurso USD"
+  },
+  {
+    "idDataset": "c6f395",
+    "nombreConjuntoDatos": "Procedimiento de retiro de agentes según la Res. CREG 156 de 2011"
+  },
+  {
+    "idDataset": "b73e3c",
+    "nombreConjuntoDatos": "Energía promedio mensual de contratos con UNR por mercado de comercialización"
+  },
+  {
+    "idDataset": "0837f0",
+    "nombreConjuntoDatos": "Consumo de Combustible Energético Mediano Plazo"
+  },
+  {
+    "idDataset": "3cf0d1",
+    "nombreConjuntoDatos": "Precios horarios futuros y estadísticas de los contratos de convocatorias del SICEP para el mercado regulado"
+  },
+  {
+    "idDataset": "252E2F",
+    "nombreConjuntoDatos": "Deltas holgura arriba y abajo horarias"
+  },
+  {
+    "idDataset": "497f97",
+    "nombreConjuntoDatos": "Programa de normalización de redes eléctricas (PRONE)"
+  },
+  {
+    "idDataset": "35d7ef",
+    "nombreConjuntoDatos": "Conceptos adicionados a través de restricciones"
+  },
+  {
+    "idDataset": "26AFFD",
+    "nombreConjuntoDatos": "Precio de cierre de los mecanismos de asignación de OEF"
+  },
+  {
+    "idDataset": "7a2e85",
+    "nombreConjuntoDatos": "Indices VERE y VEREC Energético Mediano Plazo"
+  },
+  {
+    "idDataset": "A2919B",
+    "nombreConjuntoDatos": "Histórico de eventos en Líneas de Transmisión del Sistema de Transmisión Nacional"
+  },
+  {
+    "idDataset": "1c91c4",
+    "nombreConjuntoDatos": "Fecha de retiro de unidades de generación"
+  },
+  {
+    "idDataset": "e5437f",
+    "nombreConjuntoDatos": "Precios promedios horarios mensuales por comercializador y mercado de comercialización de contratos con UNR"
+  },
+  {
+    "idDataset": "BA1C55",
+    "nombreConjuntoDatos": "Aportes Hídricos en Energía"
+  },
+  {
+    "idDataset": "5e8c28",
+    "nombreConjuntoDatos": "Transacciones realizadas en el mecanismo Derivex"
+  },
+  {
+    "idDataset": "E17D25",
+    "nombreConjuntoDatos": "Generación Real y Programada en las Plantas de Generación"
+  },
+  {
+    "idDataset": "384850",
+    "nombreConjuntoDatos": "Fondo de Apoyo Financiero para la Energización de las Zonas Rurales Interconectadas (FAER)"
+  },
+  {
+    "idDataset": "b461cf",
+    "nombreConjuntoDatos": "Tipo de Combustible con el que arrancó la planta"
+  },
+  {
+    "idDataset": "4d0f92",
+    "nombreConjuntoDatos": "Pronóstico oficial de demanda por mercado de comercialización"
+  },
+  {
+    "idDataset": "95C913",
+    "nombreConjuntoDatos": "Valor ventas transacciones bolsa en moneda"
+  },
+  {
+    "idDataset": "1e543e",
+    "nombreConjuntoDatos": "Energía promedio de los contratos del SICEP para el mercado regulado por comercializador"
+  },
+  {
+    "idDataset": "055232",
+    "nombreConjuntoDatos": "Representatividad de participantes del MEM"
+  },
+  {
+    "idDataset": "a3db98",
+    "nombreConjuntoDatos": "Eventos de Tensión fuera de Rango"
+  },
+  {
+    "idDataset": "4295B4",
+    "nombreConjuntoDatos": "Compras en bolsa internacional en moneda"
+  },
+  {
+    "idDataset": "AA5C78",
+    "nombreConjuntoDatos": "Panorama energético Corto Plazo Supuestos y Resultados"
+  },
+  {
+    "idDataset": "52341b",
+    "nombreConjuntoDatos": "Precios y Energía de los contratos no realizados a través del SICEP con destino al mercado regulado"
+  },
+  {
+    "idDataset": "77b26e",
+    "nombreConjuntoDatos": "Datos soporte del proceso de liquidación por versión y mensual"
+  },
+  {
+    "idDataset": "F577E2",
+    "nombreConjuntoDatos": "Pruebas de generación corto plazo"
+  },
+  {
+    "idDataset": "BE51B1",
+    "nombreConjuntoDatos": "Obligación de energía firme por submercado"
+  },
+  {
+    "idDataset": "E60CE2",
+    "nombreConjuntoDatos": "Venta en contratos bilaterales de largo plazo por vendedor en energía"
+  },
+  {
+    "idDataset": "F3A9B1",
+    "nombreConjuntoDatos": "Bandera de Disponibilidad Real"
+  },
+  {
+    "idDataset": "AE2DD3",
+    "nombreConjuntoDatos": "Promedio aritmético anual de la participación en Convocatorias de agentes registrados"
+  },
+  {
+    "idDataset": "1088a6",
+    "nombreConjuntoDatos": "Importaciones Netas Energético Mediano Plazo"
+  },
+  {
+    "idDataset": "30D865",
+    "nombreConjuntoDatos": "Histórico anual de los precios de referencia para el traslado al Mercado Regulado --Deprecated-- "
+  },
+  {
+    "idDataset": "C8172F",
+    "nombreConjuntoDatos": "Otros costos variables hidráulicos y térmicos"
+  },
+  {
+    "idDataset": "CD2034",
+    "nombreConjuntoDatos": "Energía de referencia para el Sistema de Transmisión Nacional"
+  },
+  {
+    "idDataset": "de5ea2",
+    "nombreConjuntoDatos": "Pronóstico del CND de demanda por subárea operativa"
+  },
+  {
+    "idDataset": "31E0AF",
+    "nombreConjuntoDatos": "Demanda comercial internacional"
+  },
+  {
+    "idDataset": "38a251",
+    "nombreConjuntoDatos": "Precios y estadísticas de los contratos entre agentes, por año de suscripción y por generador"
+  },
+  {
+    "idDataset": "77395a",
+    "nombreConjuntoDatos": "Informe trimestral de auditoría de costos de combustible reportados para la operación"
+  },
+  {
+    "idDataset": "2cf281",
+    "nombreConjuntoDatos": "Evolución histórica anual de las estadísticas generales de las convocatorias SICEP con destino al mercado regulado"
+  },
+  {
+    "idDataset": "561aa8",
+    "nombreConjuntoDatos": "Reservas en Porcentaje Energético Largo Plazo"
+  },
+  {
+    "idDataset": "32C229",
+    "nombreConjuntoDatos": "Fondo de apoyo a zonas no interconectadas (FAZNI)"
+  },
+  {
+    "idDataset": "D0B4E3",
+    "nombreConjuntoDatos": "Informe de resultados del despacho económico"
+  },
+  {
+    "idDataset": "63d90d",
+    "nombreConjuntoDatos": "Pronóstico oficial de demanda por subárea operativa"
+  },
+  {
+    "idDataset": "CDD16E",
+    "nombreConjuntoDatos": "Generación ideal internacional Ecuador por planta"
+  },
+  {
+    "idDataset": "B4D9FE",
+    "nombreConjuntoDatos": "Bandera de autorización a desvío del programa de generación"
+  },
+  {
+    "idDataset": "96D56E",
+    "nombreConjuntoDatos": "Precio de bolsa ponderado"
+  },
+  {
+    "idDataset": "97c8ec",
+    "nombreConjuntoDatos": "Histórico de eventos en Activos de Transmisión del Sistema de Transmisión Nacional"
+  },
+  {
+    "idDataset": "82ae92",
+    "nombreConjuntoDatos": "Costos Marginales Energético Mediano Plazo"
+  },
+  {
+    "idDataset": "6827d9",
+    "nombreConjuntoDatos": "Estadísticas del Costo Unitario de Reconciliación Positiva"
+  },
+  {
+    "idDataset": "d66c25",
+    "nombreConjuntoDatos": "Precios promedios horarios mensuales de contratos con UNR por mercado de comercialización"
+  },
+  {
+    "idDataset": "cdfe1b",
+    "nombreConjuntoDatos": "Informe de reevaluación de parámetros de regulación secundaria de frecuencia AGC"
+  },
+  {
+    "idDataset": "596c1c",
+    "nombreConjuntoDatos": "Demanda Energético Mediano Plazo"
+  },
+  {
+    "idDataset": "781422",
+    "nombreConjuntoDatos": "Precios y estadísticas de los contratos entre agentes integrados verticalmente por comercializador"
+  },
+  {
+    "idDataset": "331979",
+    "nombreConjuntoDatos": "Precios y estadísticas de los contratos de convocatorias del SICEP para el mercado regulado, por año de suscripción y por comercializador"
+  },
+  {
+    "idDataset": "43cd59",
+    "nombreConjuntoDatos": "Garantía de reserva de capacidad de transporte"
+  },
+  {
+    "idDataset": "9407AC",
+    "nombreConjuntoDatos": "Valor de consumo principal proporcional a la reconciliación positiva"
+  },
+  {
+    "idDataset": "28b062",
+    "nombreConjuntoDatos": "Datos soporte del proceso de liquidación por Código sic agente, versión y diaria"
+  },
+  {
+    "idDataset": "b18005",
+    "nombreConjuntoDatos": "Precio de oferta de la planta para cada configuración ofertada en el proceso del despacho ideal, en COP/kWh"
+  },
+  {
+    "idDataset": "BAE067",
+    "nombreConjuntoDatos": "Auditoria Ejecución Conjuntos de SIMEM"
+  },
+  {
+    "idDataset": "234D49",
+    "nombreConjuntoDatos": "Disponibilidad programada"
+  },
+  {
+    "idDataset": "923030",
+    "nombreConjuntoDatos": "Oportunidad en el reporte de información por parte de XM, el Administrador del SIMEM y otros"
+  },
+  {
+    "idDataset": "A1DBD9",
+    "nombreConjuntoDatos": "Magnitud de reconciliación positiva arranque"
+  },
+  {
+    "idDataset": "1F06A2",
+    "nombreConjuntoDatos": "Otros costos variables asociados al SIN"
+  },
+  {
+    "idDataset": "244B98",
+    "nombreConjuntoDatos": "Disponibilidad asociada con arranque utilizando tecnología térmica a gas de ciclo abierto"
+  },
+  {
+    "idDataset": "8ae7da",
+    "nombreConjuntoDatos": "Combustibles y Heat Rate de plantas térmicas del SIN"
+  },
+  {
+    "idDataset": "0d5da1",
+    "nombreConjuntoDatos": "Costo Equivalente de Energía (CEE)"
+  },
+  {
+    "idDataset": "05f977",
+    "nombreConjuntoDatos": "Precios futuros horarios mensuales de contratos con UNR por mercado de comercialización"
+  },
+  {
+    "idDataset": "24F4EC",
+    "nombreConjuntoDatos": "Disponibilidad comercial por planta"
+  },
+  {
+    "idDataset": "e2f117",
+    "nombreConjuntoDatos": "Vertimientos Energético Mediano Plazo"
+  },
+  {
+    "idDataset": "8d7548",
+    "nombreConjuntoDatos": "Garantía de reserva de capacidad de transporte"
+  },
+  {
+    "idDataset": "9E77E5",
+    "nombreConjuntoDatos": "Disponibilidad real"
+  },
+  {
+    "idDataset": "767A48",
+    "nombreConjuntoDatos": "Magnitud responsabilidad comercial AGC"
+  },
+  {
+    "idDataset": "1be05d",
+    "nombreConjuntoDatos": "Precios y Energía de los contratos no realizados a través del SICEP que atienden el mercado de usuarios regulados"
+  },
+  {
+    "idDataset": "230a9d",
+    "nombreConjuntoDatos": "Registro de contratos de largo plazo entre agentes"
+  },
+  {
+    "idDataset": "F387F3",
+    "nombreConjuntoDatos": "Ventas en bolsa nacional en moneda"
+  },
+  {
+    "idDataset": "2C6C29",
+    "nombreConjuntoDatos": "Acumulado anual de los calce u operaciones de las órdenes de demanda en Convocatorias"
+  },
+  {
+    "idDataset": "f63b8b",
+    "nombreConjuntoDatos": "Déficit Energético Mediano Plazo"
+  },
+  {
+    "idDataset": "29517d",
+    "nombreConjuntoDatos": "Datos soporte del proceso de Demandas por Recurso, versión y diaria"
+  },
+  {
+    "idDataset": "841808",
+    "nombreConjuntoDatos": "Listado de Áreas Operativas del Sistema de Interconectado Nacional"
+  },
+  {
+    "idDataset": "8DA3D8",
+    "nombreConjuntoDatos": "Magnitud de reconciliación positiva para plantas que no realizan AGC"
+  },
+  {
+    "idDataset": "8DECCA",
+    "nombreConjuntoDatos": "Estadísticas de contratos del mercado secundario"
+  }
+]
