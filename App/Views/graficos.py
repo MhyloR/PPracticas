@@ -189,7 +189,7 @@ def render():
         else:
             st.file_uploader(
                 "Cargar archivo",
-                type=["csv", "xlsx", "xls", "parquet"],
+                type=["csv", "json"],
                 accept_multiple_files=False
             )
 
