@@ -27,9 +27,11 @@ def inject_css():
       --input-bg:{INPUT_BG}; --input-text:{INPUT_TEXT}; --input-border:{INPUT_BORDER}; --input-focus:{INPUT_FOCUS};
     }}
 
+    /* Fondo app y layout */
     [data-testid="stAppViewContainer"]{{ background-color: var(--app-bg); }}
     .main .block-container{{ padding: var(--l) !important; }}
 
+    /* Sidebar base */
     [data-testid="stSidebar"]{{ background-color: var(--sidebar-bg) !important; padding: var(--l) var(--m) !important; }}
     [data-testid="stSidebar"] *{{ color:#FFFFFF !important; }}
     [data-testid="stSidebar"] .stTextInput>div>div>input,
@@ -38,21 +40,18 @@ def inject_css():
     [data-testid="stSidebar"] button[kind="secondary"]{{ color:var(--sidebar-bg) !important; background-color:#FFFFFF !important; border:1px solid #FFFFFF33 !important; border-radius:8px; }}
     [data-testid="stSidebar"] h1,[data-testid="stSidebar"] h2,[data-testid="stSidebar"] h3{{ color:#FFFFFF !important; margin:var(--m) 0; }}
 
+    /* Encabezados y tarjetas */
     .app-header{{ background-color:#5b1fa6; padding:var(--m); border-radius:8px; color:#FFFFFF; text-align:center; font-size:20px; font-weight:800; margin:0 0 var(--l) 0; }}
     .section-title{{ font-weight:700; font-size:28px; color:var(--accent); margin:0 0 var(--s) 0; }}
     .card{{ border:3px solid var(--accent); background-color:#F4F3FA; border-radius:var(--radius); padding:var(--l); min-height:300px; margin:0; }}
     .card h3{{ color:var(--accent); margin:0 0 var(--s) 0; }}
     .card p{{ color:var(--text-dark); margin:0; }}
 
+    /* Contenedor “filtro” estilizado (si lo usas) */
     .st-key-filtro{{ border-radius:var(--radius); background:var(--panel-bg); padding:var(--m) var(--l); box-sizing:border-box; margin:0; }}
-    .st-key-filtro h3{{ margin:0 0 var(--s) 0; font-weight:800; color:var(--text); letter-spacing:.2px; }}
-    .st-key-filtro .stRadio div[role="radiogroup"]>label{{ display:grid; grid-template-columns:18px 1fr; align-items:center; column-gap:10px; padding:6px 4px; border-radius:8px; line-height:1.25; color:var(--text); }}
-    .st-key-filtro .stRadio div[role="radiogroup"]>label:hover{{ background:rgba(255,255,255,0.06); }}
     .st-key-filtro .muted{{ color:var(--muted); font-size:.9rem; margin-top:var(--s); }}
 
-    .css-ocqkz7, .css-1kyxreq{{ gap:var(--l) !important; }}
-
-    /* DateInput: campo */
+    /* DateInput (campo) */
     [data-testid="stDateInput"] [data-baseweb="input"]{{
       background: var(--input-bg) !important; border: none !important; box-shadow: none !important; border-radius: 10px !important;
     }}
@@ -75,7 +74,7 @@ def inject_css():
       background: var(--input-bg) !important; border: none !important; box-shadow: none !important; border-radius: 10px !important;
     }}
 
-    /* Selectbox (cerrado) */
+    /* Selectbox (cerrado) – área visible */
     div[data-testid="stAppViewContainer"] .stSelectbox > div > div {{
       background: var(--input-bg) !important; color: var(--input-text) !important; border: 1px solid var(--input-border) !important;
       border-radius: 10px !important; box-shadow: none !important;
@@ -88,8 +87,12 @@ def inject_css():
     }}
     div[data-testid="stAppViewContainer"] .stSelectbox svg {{ color: var(--input-focus) !important; }}
 
-    /* Placeholders legibles */
+    /* Placeholders legibles para TextInput */
     div[data-testid="stAppViewContainer"] .stTextInput input::placeholder {{ color: var(--text-dark) !important; opacity: 0.75 !important; }}
+    div[data-testid="stAppViewContainer"] .stTextInput input::-webkit-input-placeholder {{ color: var(--text-dark) !important; opacity: 0.75 !important; }}
+    div[data-testid="stAppViewContainer"] .stTextInput input::-moz-placeholder {{ color: var(--text-dark) !important; opacity: 0.75 !important; }}
+    div[data-testid="stAppViewContainer"] .stTextInput input:-ms-input-placeholder {{ color: var(--text-dark) !important; opacity: 0.75 !important; }}
+    div[data-testid="stAppViewContainer"] .stTextInput input::-ms-input-placeholder {{ color: var(--text-dark) !important; opacity: 0.75 !important; }}
 
     /* Botones */
     div[data-testid="stAppViewContainer"] .stButton > button {{
@@ -102,6 +105,42 @@ def inject_css():
     div[data-testid="stAppViewContainer"] .stButton > button:disabled {{ background: #E5E7EB !important; color: #9AA0AA !important; border-color: #E5E7EB !important; }}
     div[data-testid="stAppViewContainer"] .stButton > button:focus-visible {{
       outline: none !important; box-shadow: 0 0 0 3px rgba(99,102,241,.25) !important;
+    }}
+
+    /* ===========================================================
+       >>>> NUEVO: TEXTO Y PLACEHOLDER DEL INPUT INTERNO DEL SELECTBOX
+       (cuando escribes para buscar en idDataset / nombreConjuntoDatos)
+       =========================================================== */
+
+    /* Texto que escribes (contenido principal) */
+    div[data-testid="stAppViewContainer"] .stSelectbox [data-baseweb="select"] input {{
+      color: var(--input-text) !important;     /* #111827 por defecto */
+    }}
+
+    /* Placeholder (contenido principal) */
+    div[data-testid="stAppViewContainer"] .stSelectbox [data-baseweb="select"] input::placeholder {{
+      color: var(--text-dark) !important;      /* #000000 por defecto */
+      opacity: 0.75 !important;                /* sube a 0.9 si quieres más contraste */
+    }}
+
+    /* Compatibilidad cross-browser para placeholder */
+    div[data-testid="stAppViewContainer"] .stSelectbox [data-baseweb="select"] input::-webkit-input-placeholder {{ color: var(--text-dark) !important; opacity: 0.75 !important; }}
+    div[data-testid="stAppViewContainer"] .stSelectbox [data-baseweb="select"] input::-moz-placeholder {{ color: var(--text-dark) !important; opacity: 0.75 !important; }}
+    div[data-testid="stAppViewContainer"] .stSelectbox [data-baseweb="select"] input:-ms-input-placeholder {{ color: var(--text-dark) !important; opacity: 0.75 !important; }}
+    div[data-testid="stAppViewContainer"] .stSelectbox [data-baseweb="select"] input::-ms-input-placeholder {{ color: var(--text-dark) !important; opacity: 0.75 !important; }}
+
+    /* Mantener color cuando el menú está abierto (focus) */
+    div[data-testid="stAppViewContainer"] .stSelectbox [data-baseweb="select"]:focus-within input {{
+      color: var(--input-text) !important;
+    }}
+
+    /* ===== (Opcional) Sidebar: texto y placeholder del selectbox ===== */
+    [data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] input {{
+      color: #000000 !important;
+    }}
+    [data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] input::placeholder {{
+      color: #111827 !important;
+      opacity: 0.75 !important;
     }}
     </style>
     """, unsafe_allow_html=True)
